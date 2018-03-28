@@ -1,0 +1,41 @@
+{
+  "name": "@0x4447/avocado",
+  "version": "1.0.0",
+  "description": "🥑 build the output of a front-end page to be hosted on S3 and delivered by CloudFront",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://davidgatti@github.com/0x4447/0x4447-cli-node-avocado.git"
+  },
+  "bin": {
+    "avocado": "./index.js"
+  },
+  "keywords": [
+    "cli",
+    "nodejs",
+    "0x4447",
+    "s3",
+    "build",
+    "convert",
+    "CloudFront",
+    "aws"
+  ],
+  "author": {
+    "name": "0x4447",
+    "email": "hello@0x4447.com",
+    "url": "https://0x4447.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0x4447/0x4447-cli-node-avocado/issues"
+  },
+  "homepage": "https://github.com/0x4447/0x4447-cli-node-avocado#readme",
+  "dependencies": {
+    "ncp": "^2.0.0",
+    "recursive-readdir": "^2.2.2"
+  }
+}
