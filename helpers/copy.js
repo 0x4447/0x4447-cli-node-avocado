@@ -72,7 +72,7 @@ module.exports = function(container)
 
 //
 //	This function is used to filter files that don't need to be copied
-//	in to the _output
+//	in to the _output folder
 //
 function filter(file)
 {
