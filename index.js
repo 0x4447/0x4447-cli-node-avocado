@@ -1,4 +1,5 @@
 let start = require('./helpers/start');
+let render = require('./helpers/render');
 let rename = require('./helpers/rename');
 let copy = require('./helpers/copy');
 let stop = require('./helpers/stop');
@@ -17,6 +18,10 @@ let container = {
 //
 start(container)
 	.then(function(container) {
+
+		return render(container);
+
+	}).then(function(container) {
 
 		return rename(container);
 
