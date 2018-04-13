@@ -7,8 +7,6 @@ module.exports = function(container)
 		//
 		console.log("Start");
 
-		console.log(container);
-
 		//
 		//	->	Move to the next chain
 		//

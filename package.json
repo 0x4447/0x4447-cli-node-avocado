@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+    "build": "npm pack && npm install -g 0x4447-avocado-* && rm 0x4447-avocado-*",
     "test": "mocha"
   },
   "repository": {
@@ -35,6 +36,7 @@
   },
   "homepage": "https://github.com/0x4447/0x4447-cli-node-avocado#readme",
   "dependencies": {
+    "commander": "^2.15.1",
     "hogan.js": "^3.0.2",
     "ncp": "^2.0.0",
     "recursive-readdir": "^2.2.2"

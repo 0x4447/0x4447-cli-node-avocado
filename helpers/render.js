@@ -55,17 +55,22 @@ function read_files_path(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	x.	Get all the files from the View folder
+		//	1.	Set the full path to the folder
 		//
-		let files = fs.readdirSync('./views');
+		let path = container.settings.dir + '/_input/views';
 
 		//
-		//	x.	Make clear variable where to store all the files
+		//	2.	Get all the files from the View folder
+		//
+		let files = fs.readdirSync(path);
+
+		//
+		//	3.	Make clear variable where to store all the files
 		//
 		let tmp = [];
 
 		//
-		//	x.	Loop over what we got back from the folder and remove what
+		//	4.	Loop over what we got back from the folder and remove what
 		//		we don't need
 		//
 		files.forEach(function(file) {
@@ -118,7 +123,7 @@ function read_file_content(container)
 			//
 			//	1.	Build out the full path to the file
 			//
-			let path = container.settings.pwd + '/views/' + file_name
+			let path = container.settings.dir + '/_input/views/' + file_name;
 
 			//
 			//	2.	Treat the _frame file as a special case. Since this file
@@ -248,7 +253,7 @@ function save_to_disk(container)
 			//
 			//	2.	Create the file full path
 			//
-			let path = container.settings.pwd + '/' + file_name
+			let path = container.settings.dir + '/_input/' + file_name
 
 			//
 			//	3.	Create a File Descriptor based on the path that we made

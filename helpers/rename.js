@@ -25,9 +25,14 @@ module.exports = function(container)
 		console.log("Rename");
 
 		//
-		//	1.	Get recursively the URI of each file
+		//	1.	Set the full path to the folder
 		//
-		recursive("_output", function (error, files) {
+		let path_to_folder = container.settings.dir + '/_output';
+
+		//
+		//	2.	Get recursively the URI of each file
+		//
+		recursive(path_to_folder, function (error, files) {
 
 			//
 			//	1.	Go over each URI that we got and find out if we

@@ -1,23 +1,6 @@
 let ncp = require('ncp').ncp;
 
 //
-//	1.	The path of the Input folder
-//
-let source = './_input';
-
-//
-//	2.	The path of the Output folder
-//
-let target = './_output';
-
-//
-//	3.	The options for he NCP command
-//
-let options = {
-	filter: filter
-}
-
-//
 //	Copy the content of the _input to the _output and to all the changes in
 //	the _output folder. This way we don't work on the original project, and
 //	CodeBuild have one clear location to use when coping the files to S3
@@ -29,10 +12,27 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Rename");
+		console.log("Copy");
 
 		//
-		//	3.
+		//	1.	The path of the Input folder
+		//
+		let source = container.settings.dir + '/_input';
+
+		//
+		//	2.	The path of the Output folder
+		//
+		let target = container.settings.dir + '/_output';
+
+		//
+		//	3.	The options for he NCP command
+		//
+		let options = {
+			filter: filter
+		}
+
+		//
+		//	4. Copy the files from the Source to the Target location
 		//
 		ncp(source, target, options, function(error) {
 
