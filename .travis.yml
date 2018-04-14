@@ -6,7 +6,7 @@ script:
 - make test
 deploy:
   provider: npm
-  email: hello@gatti.pl
+  email: office@gatti.pl
   api_key:
     secure: K+awVb4OcG+eKKk5a5g2IRBuhaf07FFia2/iD0Q9k9516fyNnpgWvjEXKsYhdYq5tMmxubTuHbED8lhLDDhY+FgD8869jB0Tpoy04ym4uMulhKgJzN7M1W8/IBkYeE2eCpGXHQgE6h93uu7LvizFmAR2qovEEDeKdPi2ajr/KDVlw0QpW0BpiiXl8eFjxaMHibzoVq4YZRdi2Dq1r0m9B3p79Vw+PixjKxW779xAz49NUCtVMDICMnK3vuVpkCufvOHm+oZ1cgSTuzMdf7PZ0BqQnHDP9unYNdO9BpSvmkM/dpN+xJEltuYjPyZzLQZFVMBg669DTR8G2kELPfC+KEK0IRfXgCVLu4qdValYxRXPwslTeLXry8j0lKGbrLB6+xZgYNp/EvlVmyUNuDYxDobqOIJ4/RM+GZDPKEVuERP3sXzIi4Mv3F9QmYVenq49UhLHvHqC7dw/5bKmtDIO7SjnWSVENazCpUcnqff1n7bzzyjfQbFRHh/biag3EwBOqBBOUmLpWiVGjoPDlSQXVhZqmTsyuvwVU8k2n2i+mcNKWB9cTIokHe6fLjdeN4rotwGGToa1M9Hd3wP5pjn4HJLVzvKEtsbHkMA/htj91Hkzmjt915TNcm0YUDh6C+HxL3I//XInKtk5RNL5jDd+i/AmZuIl78A7Qic9gCAlgZo=
   on:
