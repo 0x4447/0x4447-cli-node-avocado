@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "🥑 build the output of a front-end page to be hosted on S3 and delivered by CloudFront",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "node index",
     "build": "npm pack && npm install -g 0x4447-avocado-* && rm 0x4447-avocado-*",
