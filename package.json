@@ -38,6 +38,7 @@
   "dependencies": {
     "commander": "^2.15.1",
     "hogan.js": "^3.0.2",
+    "mocha": "^5.1.0",
     "ncp": "^2.0.0",
     "recursive-readdir": "^2.2.2",
     "rimraf": "^2.6.2"
