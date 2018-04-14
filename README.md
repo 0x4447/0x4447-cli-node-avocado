@@ -21,6 +21,10 @@ The root folder will contain the `_input` folder where the content of the site i
 
 All the other files and folders in the root dirrectory are for CodeBuild itself.
 
+# Is this a new framework?
+
+We hope not 🤣. There are plenty of frameworks already out there! Avocado is more a utility tool to allow you the automatic deployment of a simple HTML page to CloudFront–by preparing the final output in a way where you can have a clean URL in the borwser, and have the correct `<a>` tags pointing to the right url once deployed on CF, while allowing you to still work noramlly on your local machine. 
+
 # Why This Name?
 
 Why not? We had to call it something. And once you see it, you're not going to forget it. 😃
