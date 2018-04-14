@@ -5,6 +5,7 @@ let copy = require('./helpers/copy');
 let stop = require('./helpers/stop');
 let data = require('./helpers/data');
 let start = require('./helpers/start');
+let clean = require('./helpers/clean');
 let render = require('./helpers/render');
 let rename = require('./helpers/rename');
 let program = require('commander');
@@ -69,6 +70,10 @@ let container = {
 //
 start(container)
 	.then(function(container) {
+
+		return clean(container);
+
+	}).then(function(container) {
 
 		return data(container);
 
