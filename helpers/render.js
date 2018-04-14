@@ -150,7 +150,15 @@ function read_file_content(container)
 			//
 			if(file_name != '_frame.html')
 			{
-				tmp[file_name] = fs.readFileSync(path);
+				//
+				//	1.	Remove the extension from the file name
+				//
+				let no_extension = file_name.split('.')[0];
+
+				//
+				//	2.	Read the content of the file
+				//
+				tmp[no_extension] = fs.readFileSync(path);
 			}
 
 		});
@@ -184,13 +192,6 @@ function render(container)
 		let tmp = {};
 
 		//
-		//	x.	FOR TESTING _ TO BE REMOVED
-		//
-		let context = {
-			title: "sdsd"
-		}
-
-		//
 		//	2.	Loop over every file with its content
 		//
 		for(let key in container.file_body)
@@ -205,13 +206,18 @@ function render(container)
 			}
 
 			//
-			//	2.	Render the final page with the data that needs to be
-			//		replaced, and the partials
+			//	2.	Save the data in a clean variable
 			//
-			let final_file = container.page.render(context, partial);
+			let data = container.json_data[key]
 
 			//
-			//	3.	Convert the page in to a buffer, so it is easy to save it
+			//	3.	Render the final page with the data that needs to be
+			//		replaced, and the partials
+			//
+			let final_file = container.page.render(data, partial);
+
+			//
+			//	4.	Convert the page in to a buffer, so it is easy to save it
 			//		later to disk.
 			//
 			tmp[key] = Buffer.from(final_file);
@@ -253,7 +259,7 @@ function save_to_disk(container)
 			//
 			//	2.	Create the file full path
 			//
-			let path = container.settings.dir + '/_input/' + file_name
+			let path = container.settings.dir + '/_input/' + file_name + '.html';
 
 			//
 			//	3.	Create a File Descriptor based on the path that we made
