@@ -22,7 +22,7 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Rename");
+		console.log("Remove .html from file");
 
 		//
 		//	1.	Set the full path to the folder
