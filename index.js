@@ -3,6 +3,7 @@
 let npm = require('./package.json');
 let copy = require('./helpers/copy');
 let stop = require('./helpers/stop');
+let data = require('./helpers/data');
 let start = require('./helpers/start');
 let render = require('./helpers/render');
 let rename = require('./helpers/rename');
@@ -68,6 +69,10 @@ let container = {
 //
 start(container)
 	.then(function(container) {
+
+		return data(container);
+
+	}).then(function(container) {
 
 		return render(container);
 
