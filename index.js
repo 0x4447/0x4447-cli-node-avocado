@@ -8,7 +8,6 @@ let start = require('./helpers/start');
 let clean = require('./helpers/clean');
 let remove = require('./helpers/remove');
 let render = require('./helpers/render');
-let rename = require('./helpers/rename');
 let program = require('commander');
 
 //   _____   ______   _______   _______   _____   _   _    _____    _____
@@ -89,10 +88,6 @@ start(container)
 	}).then(function(container) {
 
 		return remove(container);
-
-	}).then(function(container) {
-
-		return rename(container);
 
 	}).then(function(container) {
 
