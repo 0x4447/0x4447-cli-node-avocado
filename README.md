@@ -1,6 +1,6 @@
 # 0x4447 Avocado 🥑
 
-Build the output of a front-end page to be hosted on S3 and delivered by CloudFront
+After having created the usefull CLI [0x4447 Potato 🥔](https://github.com/0x4447/0x4447-cli-node-potato) we found that deploying a simple HTML page that is not build around a framewrok is bit to anoying and time consuming. This is why we came up with the idea of Avocado 🥑-a CLI that will build the final page out of a simple folder structure.
 
 # Why This Name?
 
