@@ -2,6 +2,12 @@
 
 After having created the usefull CLI [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) 🥔 we found that deploying a simple HTML page to AWS CloudFront which is not build around a framewrok is bit to anoying and time consuming. This is why we came up with the idea for Avocado–a CLI that will build the final page out of a simple folder structure–by using the awesome templating engine Hogan, and some custom code to prepare the final page in a way that is CloudFront friendly.
 
+# How to Install
+
+```
+sudo npm install -g @0x4447/avocado
+```
+
 # Actions that Avocado Takes
 
 - Removes any files and folder inside the `_output` fodler of the source project
