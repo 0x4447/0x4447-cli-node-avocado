@@ -46,12 +46,14 @@ module.exports = function(container)
 				//
 				let path_to_file = path_to_folder + '/' + file_name;
 
+				console.log("Path to file: ", path_to_file);
+
 				//
 				//	2.	Read the content of the file
 				//
 				let file = fs.readFileSync(path_to_file);
 
-				console.log("From disk: ", file.toString());
+				console.log("From disk: ", file);
 
 				//
 				//	3.	Remove the extension in the a href in the menu of the
