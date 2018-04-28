@@ -270,7 +270,7 @@ function save_to_disk(container)
 			//
 			//	4.	Write the page on disk
 			//
-			fs.writeSync(fd, file)
+			fs.writeSync(fd, file, 0, file.length);
 		}
 
 		//
