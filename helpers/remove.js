@@ -49,7 +49,7 @@ module.exports = function(container)
 				//
 				//	2.	Read the content of the file
 				//
-				let file = fs.readFileSync(path_to_file, 'r');
+				let file = fs.readFileSync(path_to_file);
 
 				console.log("From disk: ", new_file.toString());
 
