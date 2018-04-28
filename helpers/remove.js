@@ -46,22 +46,16 @@ module.exports = function(container)
 				//
 				let path_to_file = path_to_folder + '/' + file_name;
 
-				console.log("Path to file: ", path_to_file);
-
 				//
 				//	2.	Read the content of the file
 				//
 				let file = fs.readFileSync(path_to_file);
-
-				console.log("From disk: ", file);
 
 				//
 				//	3.	Remove the extension in the a href in the menu of the
 				//		page
 				//
 				new_file = file.toString().replace(/\.html/g, '');
-
-				console.log("After cleanup: ", new_file);
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
