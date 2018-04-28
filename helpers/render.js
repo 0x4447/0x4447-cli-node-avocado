@@ -256,10 +256,14 @@ function save_to_disk(container)
 			//
 			let file = container.final_files[file_name];
 
+			console.log("Rendered file: ", file);
+
 			//
 			//	2.	Create the file full path
 			//
 			let path = container.settings.dir + '/_input/' + file_name + '.html';
+
+			console.log("Path: ", path);
 
 			//
 			//	3.	Create a File Descriptor based on the path that we made
