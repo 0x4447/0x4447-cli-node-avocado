@@ -73,7 +73,7 @@ module.exports = function(container)
 				//
 				//	5.	Write the page on disk
 				//
-				fs.writeSync(fd, new_file);
+				fs.writeSync(fd, new_file, 0, new_file.length);
 			}
 
 		})
