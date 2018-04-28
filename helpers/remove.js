@@ -49,7 +49,7 @@ module.exports = function(container)
 				//
 				//	2.	Read the content of the file
 				//
-				let file = fs.readFileSync(path_to_file);
+				let file = fs.readFileSync(path_to_file, 'r');
 
 				//
 				//	3.	Remove the extension in the a href in the menu of the
