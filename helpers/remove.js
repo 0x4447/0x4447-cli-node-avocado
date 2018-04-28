@@ -51,7 +51,7 @@ module.exports = function(container)
 				//
 				let file = fs.readFileSync(path_to_file);
 
-				console.log("From disk: ", new_file.toString());
+				console.log("From disk: ", file.toString());
 
 				//
 				//	3.	Remove the extension in the a href in the menu of the
@@ -59,7 +59,7 @@ module.exports = function(container)
 				//
 				new_file = file.toString().replace(/\.html/g, '');
 
-				console.log("After cleanup: ",new_file);
+				console.log("After cleanup: ", new_file);
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
