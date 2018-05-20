@@ -82,6 +82,7 @@ function filter(file)
 	if(file == 'output') 		{ state = false; }
 	if(file == '.DS_Store') 	{ state = false; }
 	if(file == 'README.md') 	{ state = false; }
+	if(file == 'LICENSE') 		{ state = false; }
 
 	return state;
 }
