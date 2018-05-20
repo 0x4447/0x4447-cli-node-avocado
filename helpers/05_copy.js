@@ -12,12 +12,105 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Copy");
+		console.log("Copying");
+
+		//
+		//	->	Start the chain
+		//
+		preview(container)
+			.then(function(container) {
+
+				return output(container);
+
+			}).then(function(container) {
+
+				return resolve(container);
+
+			}).catch(function(error) {
+
+				return reject(error);
+
+			});
+
+	});
+};
+
+//	 _____    _____     ____    __  __   _____    _____   ______    _____
+//	|  __ \  |  __ \   / __ \  |  \/  | |_   _|  / ____| |  ____|  / ____|
+//	| |__) | | |__) | | |  | | | \  / |   | |   | (___   | |__    | (___
+//	|  ___/  |  _  /  | |  | | | |\/| |   | |    \___ \  |  __|    \___ \
+//	| |      | | \ \  | |__| | | |  | |  _| |_   ____) | | |____   ____) |
+//	|_|      |_|  \_\  \____/  |_|  |_| |_____| |_____/  |______| |_____/
+//
+
+//
+//	Copy all the data to the folder for to make a preview
+//
+function preview(container)
+{
+	return new Promise(function(resolve, reject) {
+
+		//
+		//	->	Show at which step are we
+		//
+		console.log("Make Output");
 
 		//
 		//	1.	The path of the Input folder
 		//
 		let source = container.settings.dir + '/_input';
+
+		//
+		//	2.	The path of the Output folder
+		//
+		let target = container.settings.dir + '/_preview';
+
+		//
+		//	3.	The options for he NCP command
+		//
+		let options = {
+			filter: filter
+		}
+
+		//
+		//	4. Copy the files from the Source to the Target location
+		//
+		ncp(source, target, options, function(error) {
+
+			//
+			//	1.	Check if an error occurred
+			//
+			if(error)
+			{
+				return reject(error);
+			}
+
+			//
+			//	->	Move to the next chain
+			//
+			return resolve(container)
+
+		});
+
+	});
+}
+
+//
+//	Copy all the data to the folder for release
+//
+function output(container)
+{
+	return new Promise(function(resolve, reject) {
+
+		//
+		//	->	Show at which step are we
+		//
+		console.log("Make Output");
+
+		//
+		//	1.	The path of the Input folder
+		//
+		let source = container.settings.dir + '/_preview';
 
 		//
 		//	2.	The path of the Output folder
@@ -41,15 +134,7 @@ module.exports = function(container)
 			//
 			if(error)
 			{
-				//
-				//	1.	Show the error
-				//
-				console.log(error);
-
-				//
-				//	->	Exit the app
-				//
-				process.exit(1);
+				return reject(error);
 			}
 
 			//
@@ -60,7 +145,7 @@ module.exports = function(container)
 		});
 
 	});
-};
+}
 
 //	 ______  _    _  _   _   _____  _______  _____  ____   _   _   _____
 //	|  ____|| |  | || \ | | / ____||__   __||_   _|/ __ \ | \ | | / ____|
