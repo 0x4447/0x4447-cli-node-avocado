@@ -9,7 +9,7 @@ After having created the useful [0x4447 Potato](https://github.com/0x4447/0x4447
 sudo npm install -g @0x4447/avocado
 ```
 
-# How to Usage
+# How to Use
 
 ```
 avocado -s PATH_TO_FOLDER
