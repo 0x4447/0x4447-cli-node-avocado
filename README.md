@@ -1,8 +1,9 @@
 # 🥑 Avocado
 
-After having created the usefull CLI [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) 🥔 we found that deploying a simple HTML page to AWS CloudFront which is not build around a framewrok is bit to anoying and time consuming. This is why we came up with the idea for Avocado–a CLI that will build the final page out of a simple folder structure–by using the awesome templating engine Hogan, and some custom code to prepare the final page in a way that is CloudFront friendly.
+After having created the useful [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) 🥔 CLI, we found that deploying a simple HTML page to AWS CloudFront, a page that is not build around a framework, is annoying and time consuming. This is why we came up with the idea for Avocado: a CLI that will build the final page out of a simple folder structure by using the awesome templating engine–Hogan.
 
 # How to Install
+
 
 ```
 sudo npm install -g @0x4447/avocado
@@ -22,26 +23,26 @@ avocado -h
 
 # Actions that Avocado Takes
 
-- Removes any files and folder inside the `_output` fodler of the source project
-- Reads the JSON data that will be used by hogan do enrich the page
-- Renders the final page usign Hogan
-- Copise the final page from the `_input` folder to the `_otput` one
-- Removes the `.html` from the urls in the menu
-- Removes the `.thml` format from the HTML files themself.
+- Removes the `_preview` and `_output` folder, this way we have a clean slate
+- Creates empty `_preview` and `_output` folder folders
+- Reads the JSON data that will be used by Hogan to enrich the page
+- Renders the final page using Hogan in to the `_preview` folder
+- Copy the content of the `_input` folder in to the `_preview` one. From there it copies the final content to the `_output` folder
+- Removes the `.html` from the URLs in the menu
 
-The last two steps are mad so, wehn you deploy the page on CloudFront you will have a URL that looks like https://0x4447.com/contact, instead of https://0x4447.com/contact.html.
+The last steps is done, to make sure the URL on the page points to something like this https://0x4447.com/contact, instead of https://0x4447.com/contact.html. Since [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) will strip the file format from the `.html` files.
 
 # Folder Structure of the Source Site
 
-if you'd like to try out Avocado, you can take a look at our [company webiste repository](https://github.com/0x4447/0x4447.com). The structure of the project was set to make it easy to use AWS CodeBuild, and crete the final site, that then can be easelly copied to S3.
+If you'd like to try out Avocado, you can take a look at our [company website repository](https://github.com/0x4447/0x4447.com). The structure of the project was set to make it easy to use it with AWS CodeBuild.
 
-The root folder will contain the `_input` folder where the content of the site is located. The `data`, and `views` folders holds the data and the HTML files which are used to geenrate the final output.
+The root folder will contain the `_input` folder where the content of the site is located. The `data`, and `views` folders holds the data and the HTML files which are used to generate the previews and final output.
 
-All the other files and folders in the root dirrectory are for CodeBuild itself.
+All the other files and folders in the root directory are for CodeBuild itself.
 
 # Is this a new framework?
 
-We hope not 🤣. There are plenty of frameworks already out there! Avocado is more a utility tool to allow you the automatic deployment of a simple HTML page to CloudFront–by preparing the final output in a way where you can have a clean URL in the borwser, and have the correct `<a>` tags pointing to the right url once deployed on CF, while allowing you to still work noramlly on your local machine.
+We hope not 🤣. There are plenty of frameworks already out there! Avocado is more a utility tool to allow you the automatic deployment of a simple HTML page to CloudFront–by preparing the final output in a way where you can have a clean URL in the browser, and have the correct `<a>` tags pointing to the right URL once deployed on CF, while allowing you to still work normally on your local machine.
 
 # Why This Name?
 

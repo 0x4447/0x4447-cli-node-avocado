@@ -5,7 +5,7 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Stop");
+		console.log("Stopping");
 
 		//
 		//	1.	Exit the CLI with a positive message

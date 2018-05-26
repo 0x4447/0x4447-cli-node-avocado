@@ -12,7 +12,7 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Remove .html extension inside file");
+		console.log("Removing .html from menu");
 
 		//
 		//	1.	Set the full path to the folder
@@ -80,8 +80,3 @@ module.exports = function(container)
 	});
 
 };
-
-
-
-
-

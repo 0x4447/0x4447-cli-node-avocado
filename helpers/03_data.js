@@ -3,7 +3,8 @@ let path = require('path');
 let recursive = require('recursive-readdir');
 
 //
-//	Remove the .html extension that appears in the page menu section
+//	Load all the JSON data for each page, so it can then be used to render
+//	the final pages
 //
 module.exports = function(container)
 {
@@ -12,7 +13,7 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Reading JSON data.");
+		console.log("Reading JSON data");
 
 		//
 		//	1.	Set the full path to the folder

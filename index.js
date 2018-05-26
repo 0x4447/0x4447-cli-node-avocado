@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
 let npm = require('./package.json');
-let copy = require('./helpers/copy');
-let stop = require('./helpers/stop');
-let data = require('./helpers/data');
-let start = require('./helpers/start');
-let clean = require('./helpers/clean');
-let remove = require('./helpers/remove');
-let render = require('./helpers/render');
 let program = require('commander');
+
+let start = require('./helpers/01_start');
+let clean = require('./helpers/02_clean');
+let data = require('./helpers/03_data');
+let render = require('./helpers/04_render');
+let copy = require('./helpers/05_copy');
+let remove = require('./helpers/06_remove');
+let stop = require('./helpers/07_stop');
 
 //   _____   ______   _______   _______   _____   _   _    _____    _____
 //  / ____| |  ____| |__   __| |__   __| |_   _| | \ | |  / ____|  / ____|
@@ -96,5 +97,6 @@ start(container)
 	}).catch(function(error) {
 
 		console.log(error);
+		process.exit(-1);
 
 	});

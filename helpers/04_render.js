@@ -13,7 +13,7 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Render");
+		console.log("Rendering");
 
 		//
 		//	->	Start the chain
@@ -33,9 +33,6 @@ module.exports = function(container)
 
 			}).then(function(container) {
 
-				//
-				//	->	Move to the previous chain
-				//
 				return resolve(container)
 
 			}).catch(function(error) {
@@ -259,7 +256,7 @@ function save_to_disk(container)
 			//
 			//	2.	Create the file full path
 			//
-			let path = container.settings.dir + '/_input/' + file_name + '.html';
+			let path = container.settings.dir + '/_preview/' + file_name + '.html';
 
 			//
 			//	3.	Create a File Descriptor based on the path that we made
