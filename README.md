@@ -20,7 +20,7 @@ avocado -s PATH_TO_FOLDER
 avocado -h
 ```
 
-# What to expect
+# What to Expect
 
 - Removes the `_preview` and `_output` folder, this way we have a clean slate
 - Creates empty `_preview` and `_output` folder folders
@@ -39,18 +39,10 @@ The root folder will contain the `_input` folder where the content of the site i
 
 All the other files and folders in the root directory are for CodeBuild itself.
 
-# Is this a new framework?
-
-We hope not 🤣. There are plenty of frameworks already out there! Avocado is more a utility tool to allow you the automatic deployment of a simple HTML page to CloudFront–by preparing the final output in a way where you can have a clean URL in the browser, and have the correct `<a>` tags pointing to the right URL once deployed on CF, while allowing you to still work normally on your local machine.
-
-# Why This Name?
-
-Why not? We had to call it something. And once you see it, you're not going to forget it. 😃
-
 # The End
 
 If you enjoyed this article/project, please consider giving it a 🌟. And check out our [0x4447 GitHub account](https://github.com/0x4447), where we have additional articles and tools that you might find interesting.
 
 # For Hire 👨‍💻 👩‍💻
 
-If you'd like us to help you with something, please feel free to say hello@0x4447.email, and share what's on your mind. We'll take a look, and try our best to help you. Or visit our website at: [0x4447.com](https://0x4447.com).
+If you'd like us to help you with something, please feel free to say [hello@0x4447.email](hello@0x4447.email), and share what's on your mind. We'll take a look, and try our best to help you. Or visit our website at: [0x4447.com](https://0x4447.com).
