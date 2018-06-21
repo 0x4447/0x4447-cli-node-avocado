@@ -5,19 +5,19 @@ After having created the useful [0x4447 Potato](https://github.com/0x4447/0x4447
 # How to Install
 
 ```
-sudo npm install -g @0x4447/avocado
+] sudo npm install -g @0x4447/avocado
 ```
 
 # How to Use
 
 ```
-avocado -s PATH_TO_FOLDER
+] avocado -s PATH_TO_FOLDER
 ```
 
 # Where to get Help
 
 ```
-avocado -h
+] avocado -h
 ```
 
 # What to Expect
@@ -41,8 +41,8 @@ All the other files and folders in the root directory are for CodeBuild itself.
 
 # The End
 
-If you enjoyed this article/project, please consider giving it a 🌟. And check out our [0x4447 GitHub account](https://github.com/0x4447), where we have additional articles and tools that you might find interesting.
+If you enjoyed this project, please consider giving it a 🌟. And check out our [0x4447 GitHub account](https://github.com/0x4447), where we have additional resources that you might find useful or interesting.
 
 # For Hire 👨‍💻 👩‍💻
 
-If you'd like us to help you with something, please feel free to say [hello@0x4447.email](hello@0x4447.email), and share what's on your mind. We'll take a look, and try our best to help you. Or visit our website at: [0x4447.com](https://0x4447.com).
+If you'd like us to help you with something, please feel free to say [hello@0x4447.email](mailto:hello@0x4447.email), and share what's on your mind. We'll take a look, and try our best to help you. Or visit our website at: [0x4447.com](https://0x4447.com).
