@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+let fs = require('fs');
 let npm = require('./package.json');
 let program = require('commander');
 
@@ -27,7 +28,8 @@ let stop 	= require('./helpers/07_stop');
 //
 program
 	.version(npm.version)
-	.option('-s, --source', 'path to the folder to upload')
+	.option('-s, --source', 'Path to the folder to process')
+	.option('-m, --monitor', 'Monitor for file change')
 	.parse(process.argv);
 
 //
@@ -49,8 +51,30 @@ program.parse(process.argv);
 if(!program.source)
 {
 	console.log('Missing source');
-	process.exit(0);
+	process.exit(-1);
 }
+
+//	 _        _____    _____   _______   _   _   ______   _____     _____
+//	| |      |_   _|  / ____| |__   __| | \ | | |  ____| |  __ \   / ____|
+//	| |        | |   | (___      | |    |  \| | | |__    | |__) | | (___
+//	| |        | |    \___ \     | |    | . ` | |  __|   |  _  /   \___ \
+//	| |____   _| |_   ____) |    | |    | |\  | | |____  | | \ \   ____) |
+//	|______| |_____| |_____/     |_|    |_| \_| |______| |_|  \_\ |_____/
+//
+
+//
+//	Create the paths to the folders that we want to monitor. We need to
+//	make one path for each folder that we are interested inside _input
+//	since fs.watch() can't watch recursively.
+//
+let data_folder  = process.cwd() + "/_input/data";
+let views_folder = process.cwd() + "/_input/views";
+
+//
+//	Monitor all the folders that we care about
+//
+fs.watch(data_folder, 	function(eventType, filename) { main(); });
+fs.watch(views_folder,	function(eventType, filename) { main(); });
 
 //	 __  __              _____   _   _
 //	|  \/  |     /\     |_   _| | \ | |
@@ -61,45 +85,71 @@ if(!program.source)
 //
 
 //
-//	Create a variable that will be passed inside the chain
+//	Start the conversion process
 //
-let container = {
-	settings: {
-		dir: process.cwd() + "/" + process.argv[3],
+main();
+
+//
+//	This main function is responsible for creating the final output
+//	and can be run once or every time there is a change in the _input folder
+//
+function main()
+{
+	//
+	//	Create a variable that will be passed inside the chain
+	//
+	let container = {
+		settings: {
+			dir: process.cwd() + "/" + process.argv[3],
+		}
 	}
+
+	//
+	//	->	Start the chain
+	//
+	start(container)
+		.then(function(container) {
+
+			return clean(container);
+
+		}).then(function(container) {
+
+			return data(container);
+
+		}).then(function(container) {
+
+			return render(container);
+
+		}).then(function(container) {
+
+			return copy(container);
+
+		}).then(function(container) {
+
+			return remove(container);
+
+		}).then(function(container) {
+
+			return stop(container);
+
+		}).then(function(container) {
+
+			//
+			//	1.	Check if the app should monitor file changes or exit
+			//		after the first run.
+			//
+			if(!program.monitor)
+			{
+				//
+				//	1.	Exit the CLI with a positive message
+				//
+				process.exit();
+			}
+
+		}).catch(function(error) {
+
+			console.log(error);
+			process.exit(-1);
+
+		});
 }
-
-//
-//	->	Start the chain
-//
-start(container)
-	.then(function(container) {
-
-		return clean(container);
-
-	}).then(function(container) {
-
-		return data(container);
-
-	}).then(function(container) {
-
-		return render(container);
-
-	}).then(function(container) {
-
-		return copy(container);
-
-	}).then(function(container) {
-
-		return remove(container);
-
-	}).then(function(container) {
-
-		return stop(container);
-
-	}).catch(function(error) {
-
-		console.log(error);
-		process.exit(-1);
-
-	});

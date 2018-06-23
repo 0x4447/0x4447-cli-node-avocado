@@ -8,11 +8,6 @@ module.exports = function(container)
 		console.log("Stopping");
 
 		//
-		//	1.	Exit the CLI with a positive message
-		//
-		process.exit();
-
-		//
 		//	->	Move to the next chain
 		//
 		return resolve(container)
