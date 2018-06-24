@@ -29,8 +29,7 @@ let stop 	= require('./helpers/07_stop');
 program
 	.version(npm.version)
 	.option('-s, --source', 'Path to the folder to process')
-	.option('-m, --monitor', 'Monitor for file change')
-	.parse(process.argv);
+	.option('-m, --monitor', 'Monitor for file change');
 
 //
 //	React when the user needs help
