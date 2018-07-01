@@ -1,4 +1,5 @@
 let ncp = require('ncp').ncp;
+let path = require('path');
 
 //
 //	Copy the content of the _input to the _output and to all the changes in
@@ -159,15 +160,33 @@ function output(container)
 //	This function is used to filter files that don't need to be copied
 //	in to the _output folder
 //
-function filter(file)
+function filter(full_path)
 {
+	//
+	//	1.	By default we assume that we want the file to be copied
+	//
 	let state = true;
 
+	//
+	//	2.	Get the base name of the path, so we don't have the fill path
+	//		and get the folder or file name.
+	//
+	let file = path.basename(full_path);
+
+	//
+	//	3.	Check to see if there is something that we don't want to copy
+	//		to the new location.
+	//
 	if(file == '.git') 			{ state = false; }
 	if(file == 'output') 		{ state = false; }
 	if(file == '.DS_Store') 	{ state = false; }
 	if(file == 'README.md') 	{ state = false; }
 	if(file == 'LICENSE') 		{ state = false; }
+	if(file == 'data') 			{ state = false; }
+	if(file == 'views') 		{ state = false; }
 
+	//
+	//	->	Return our decision
+	//
 	return state;
 }
