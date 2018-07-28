@@ -55,7 +55,7 @@ module.exports = function(container)
 				//	3.	Remove the extension in the a href in the menu of the
 				//		page
 				//
-				new_file = file.toString().replace(/\.html/g, '');
+				new_file = file.toString().replace(/(?<=[a-z])\.html/g, '');
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
