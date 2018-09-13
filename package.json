@@ -1,6 +1,6 @@
 {
   "name": "@0x4447/avocado",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "🥑 build the output of a front-end page to be hosted on S3 and delivered by CloudFront",
   "homepage": "https://0x4447.com/toolbox",
   "main": "index.js",

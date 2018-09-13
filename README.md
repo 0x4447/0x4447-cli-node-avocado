@@ -45,7 +45,7 @@ If you want to work on the content of the site on you local machine, then you ca
 
 ```
 #
-#	Rr Advisro Server
+#	Server Configuration
 #
 server {
 
