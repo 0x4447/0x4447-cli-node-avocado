@@ -39,6 +39,42 @@ The root folder will contain the `_input` folder where the content of the site i
 
 All the other files and folders in the root directory are for CodeBuild itself.
 
+# How to deliver the site locally
+
+If you want to work on the content of the site on you local machine, then you can use Nginx for that. Bellow you can find the bare minimum configuration to make it work.
+
+```
+#
+#	Rr Advisro Server
+#
+server {
+
+	listen 80;
+	listen [::]:80;
+
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+	include snippets/snakeoil.conf;
+
+	root /home/davidgatti/Documents/Retireryte/YOUR_SITE_NAME/_output;
+
+	index /home;
+
+	server_name login.example.loc;
+
+	location / {
+		default_type text/html;
+
+		#
+		#	First attempt to serve request as file, then
+		#	as directory, then fall back to displaying a 404.
+		#
+		try_files $uri $uri.html $uri/ =404;
+	}
+}
+```
+
 # The End
 
 If you enjoyed this project, please consider giving it a 🌟. And check out our [0x4447 GitHub account](https://github.com/0x4447), where we have additional resources that you might find useful or interesting.
