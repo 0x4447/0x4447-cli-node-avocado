@@ -55,15 +55,35 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 
+	#
+	#	Use the a default SSL for development.
+	#
 	include snippets/snakeoil.conf;
 
+	#
+	#	Tell which folder to server.
+	#
 	root /home/davidgatti/Documents/Retireryte/YOUR_SITE_NAME/_output;
 
+	#
+	#	Set the default file.
+	#
 	index /home;
 
+	#
+	#	Tell Nginx which url is this configuration for.
+	#
 	server_name login.example.loc;
 
+	#
+	#	Default configuration.
+	#
 	location / {
+
+		#
+		#	Since we deliver files with no extension, we need to tell
+		#	Nginx what those files are.
+		#
 		default_type text/html;
 
 		#
@@ -71,6 +91,7 @@ server {
 		#	as directory, then fall back to displaying a 404.
 		#
 		try_files $uri $uri.html $uri/ =404;
+
 	}
 }
 ```
