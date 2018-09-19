@@ -41,6 +41,17 @@ All the other files and folders in the root directory are for CodeBuild itself.
 
 # How to deliver the site locally
 
+### SSL Snake oil
+
+Nginx will use the dummy SSL certificate called `snakeoil`, if you don't have on in your system you can generate one using the following command.
+
+```
+sudo apt-get install ssl-certsudo make-ssl-cert generate-default-snakeoilsudo
+usermod --append --groups ssl-cert $(whoami)
+```
+
+### Nginx Config
+
 If you want to work on the content of the site on you local machine, then you can use Nginx for that. Bellow you can find the bare minimum configuration to make it work.
 
 ```
