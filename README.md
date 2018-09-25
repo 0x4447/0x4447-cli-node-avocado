@@ -22,12 +22,12 @@ After having created the useful [0x4447 Potato](https://github.com/0x4447/0x4447
 
 # What to Expect
 
-- Removes the `_preview` and `_output` folder, this way we have a clean slate
-- Creates empty `_preview` and `_output` folder folders
-- Reads the JSON data that will be used by Hogan to enrich the page
-- Renders the final page using Hogan in to the `_preview` folder
-- Copy the content of the `_input` folder in to the `_preview` one. From there it copies the final content to the `_output` folder
-- Removes the `.html` from the URLs in the menu
+- Removes the `_preview` and `_output` folder, this way we have a clean slate.
+- Creates empty `_preview` and `_output` folder.
+- Reads the JSON files from the `data` folder to help Hogan enrich the pages.
+- Renders the final page using Hogan.
+- Save the result in the `_preview` and `_output` folder.
+- Removes the `.html` ending from any HREF on the page.
 
 The last steps is done, to make sure the URL on the page points to something like this https://0x4447.com/contact, instead of https://0x4447.com/contact.html. Since [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) will strip the file format from the `.html` files.
 
@@ -74,7 +74,7 @@ server {
 	#
 	#	Tell which folder to server.
 	#
-	root /home/davidgatti/Documents/Retireryte/YOUR_SITE_NAME/_output;
+	root /PATH/YOUR_SITE_NAME/_output;
 
 	#
 	#	Set the default file.
