@@ -1,6 +1,6 @@
 # 🥑 Avocado
 
-After having created the useful [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) 🥔 CLI, we found that deploying a simple HTML page to AWS CloudFront, a page that is not build around a framework, is annoying and time consuming. This is why we came up with the idea for Avocado: a CLI that will build the final page out of a simple folder structure by using the awesome templating engine–Hogan.
+After having created the useful [0x4447 Potato](https://www.npmjs.com/package/@0x4447/potato) 🥔 CLI, we found that deploying a simple HTML page to AWS CloudFront, a page that is not build around a framework, is annoying and time consuming. This is why we came up with the idea for Avocado: a CLI that will build the final page out of a simple folder structure by using the awesome templating engine–Hogan.
 
 # How to Install
 
@@ -43,7 +43,7 @@ All the other files and folders in the root directory are for CodeBuild itself.
 
 ### SSL Snake oil
 
-Nginx will use the dummy SSL certificate called `snakeoil`, if you don't have on in your system you can generate one using the following command.
+If you want to work on the content of the site on you local machine, then you can use Nginx for that. Nginx will use the dummy SSL certificate called `snakeoil`, to deliver the site over HTTPS. If you don't have it in your system you can generate one using the following command.
 
 ```
 sudo apt-get install ssl-certsudo make-ssl-cert generate-default-snakeoilsudo
@@ -52,7 +52,7 @@ usermod --append --groups ssl-cert $(whoami)
 
 ### Nginx Config
 
-If you want to work on the content of the site on you local machine, then you can use Nginx for that. Bellow you can find the bare minimum configuration to make it work.
+Bellow you can find the bare minimum configuration to make it all work.
 
 ```
 #
@@ -96,6 +96,11 @@ server {
 		#	Nginx what those files are.
 		#
 		default_type text/html;
+
+		#
+		#	Tell the browser that any Origin file is OK.
+		#
+		add_header Access-Control-Allow-Origin *;
 
 		#
 		#	First attempt to serve request as file, then
