@@ -1,5 +1,5 @@
 let fs = require('fs');
-let path = require('path');
+let read = require('fs-readdir-recursive');
 let recursive = require('recursive-readdir');
 
 //
@@ -18,12 +18,12 @@ module.exports = function(container)
 		//
 		//	1.	Set the full path to the folder
 		//
-		let path_to_folder = container.settings.dir + '/_input/data';
+		let path = container.settings.dir + '/_input/data';
 
 		//
 		//	2.	Read all the files in a folder
 		//
-		let files = fs.readdirSync(path_to_folder);
+		let files = read(path);
 
 		//
 		//	3.	Make a variable where to store the content of the files.
@@ -31,30 +31,30 @@ module.exports = function(container)
 		let tmp = {};
 
 		//
-		//	4.	Go over each URI that we got and find out if we
-		//		are dealing with a HTML page.
+		//	4.	Go over each URI that we got load it's content.
 		//
 		files.forEach(function(file_name) {
 
 			//
-			//	1.	Remove the extension from the file name
+			//	1.	Remove the extension from the file name so we can
+			//		use the file name as the key in the object bellow.
 			//
 			let no_extension = file_name.split('.')[0];
 
 			//
-			//	2.	Load data as a JS Object
+			//	2.	Load data as a JS Object.
 			//
-			let json = require(path_to_folder + '/' + file_name);
+			let json = require(path + '/' + file_name);
 
 			//
-			//	3.	Save the data in to another object
+			//	3.	Save the file data in to a new object.
 			//
 			tmp[no_extension] = json;
 
 		});
 
 		//
-		//	5.	Save the data fro the next promise
+		//	5.	Save the data for the next promise.
 		//
 		container.json_data = tmp;
 
