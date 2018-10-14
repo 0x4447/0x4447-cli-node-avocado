@@ -1,6 +1,6 @@
 {
   "name": "@0x4447/avocado",
-  "version": "1.4.9",
+  "version": "1.5.0",
   "description": "🥑 build the output of a front-end page to be hosted on S3 and delivered by CloudFront",
   "homepage": "https://0x4447.com/toolbox",
   "main": "index.js",
@@ -39,7 +39,9 @@
   ],
   "dependencies": {
     "commander": "2.15.1",
+    "fs-readdir-recursive": "^1.1.0",
     "hogan.js": "3.0.2",
+    "mkdirp": "^0.5.1",
     "mocha": "5.1.0",
     "ncp": "2.0.0",
     "recursive-readdir": "2.2.2",

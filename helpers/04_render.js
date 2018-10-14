@@ -1,6 +1,7 @@
 let fs = require('fs');
-let path = require('path');
+let read = require('fs-readdir-recursive');
 let hogan = require("hogan.js");
+let mkdirp = require('mkdirp');
 
 //
 //	Render all the file using Hogan, and convert the template files in to
@@ -59,7 +60,7 @@ function read_files_path(container)
 		//
 		//	2.	Get all the files from the View folder
 		//
-		let files = fs.readdirSync(path);
+		let files = read(path);
 
 		//
 		//	3.	Make clear variable where to store all the files
@@ -225,7 +226,6 @@ function render(container)
 		//
 		container.final_files = tmp;
 
-
 		//
 		//	->	Move to the next chain
 		//
@@ -259,13 +259,20 @@ function save_to_disk(container)
 			let path = container.settings.dir + '/_preview/' + file_name + '.html';
 
 			//
-			//	3.	Create a File Descriptor based on the path that we made
+			//	3.	Since we support nested folders, we heave to remove the
+			//		file name from the path, before we can create, all
+			//		the nested folders.
+			//
+			mkdirp.sync(path.split('/').slice(0, -1).join('/'));
+
+			//
+			//	4.	Create a File Descriptor based on the path that we made
 			//		so the system knows where and how this file should behave
 			//
 			let fd = fs.openSync(path, 'w')
 
 			//
-			//	4.	Write the page on disk
+			//	5.	Write the page on disk
 			//
 			fs.writeSync(fd, file, 0, file.length);
 		}

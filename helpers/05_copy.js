@@ -54,7 +54,7 @@ function preview(container)
 		//
 		//	->	Show at which step are we
 		//
-		console.log("Make Output");
+		console.log("Make Preview");
 
 		//
 		//	1.	The path of the Input folder
