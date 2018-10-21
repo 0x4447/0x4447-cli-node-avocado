@@ -112,7 +112,7 @@ server {
 }
 ```
 
-# Companion Modules
+# Companion Software
 
 This CLI tools works well also with the following software:
 
