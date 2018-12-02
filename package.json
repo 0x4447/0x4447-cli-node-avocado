@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "npm pack && npm install -g 0x4447-avocado-* && rm 0x4447-avocado-*",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-pattern test",
     "test": "mocha"
   },
   "repository": {
