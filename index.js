@@ -40,7 +40,7 @@ program.on('--help', function() {
 	//	Just add an empty line at the end of the help to make the text more
 	//	clear to the user
 	//
-	console.log("");
+	console.info("");
 
 });
 
@@ -54,7 +54,7 @@ program.parse(process.argv);
 //
 if(!program.source)
 {
-	console.log('Missing source');
+	console.info('Missing source');
 	process.exit(-1);
 }
 
@@ -94,7 +94,7 @@ fs.watch(views_folder,	function(eventType, filename) { main(); });
 main();
 
 //
-//	This main function is responsible for creating the final output
+//	this main function is responsible for creating the final output
 //	and can be run once or every time there is a change in the _input folder
 //
 function main()
@@ -104,9 +104,9 @@ function main()
 	//
 	let container = {
 		settings: {
-			dir: process.cwd() + "/" + process.argv[3],
+			dir: process.cwd() + "/" + process.argv[3]
 		}
-	}
+	};
 
 	//
 	//	->	Start the chain
@@ -144,6 +144,7 @@ function main()
 			//
 			if(!program.monitor)
 			{
+
 				//
 				//	1.	Exit the CLI with a positive message
 				//
@@ -152,7 +153,8 @@ function main()
 
 		}).catch(function(error) {
 
-			console.log(error);
+			console.error(error);
+
 			process.exit(-1);
 
 		});

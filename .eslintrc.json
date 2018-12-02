@@ -1,0 +1,124 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2016,
+        "sourceType": "module"
+    },
+    "rules": {
+        "curly": "error",
+        "no-template-curly-in-string": "error",
+        "consistent-return": "error",
+        "no-eq-null": "error",
+        "eqeqeq": "error",
+        "yoda": "error",
+        "no-floating-decimal": "error",
+        "no-multi-str": "error",
+        "no-unused-vars": "off",
+        "callback-return": "error",
+        "global-require": "error",
+        "handle-callback-err": "error",
+        "no-buffer-constructor": "error",
+        "no-mixed-requires": "error",
+        "no-new-require": "error",
+        "no-path-concat": "error",
+        "no-underscore-dangle": "error",
+        "no-unneeded-ternary": "error",
+        "no-whitespace-before-property": "error",
+        "func-name-matching": "error",
+        "no-duplicate-imports": "error",
+        "no-useless-computed-key": "error",
+        "no-nested-ternary": "error",
+        "no-ternary": "error",
+        "no-trailing-spaces": "error",
+        "no-var": "error",
+        "no-multi-assign": "error",
+        "block-spacing": "error",
+        "semi-spacing": "error",
+        "space-infix-ops": "error",
+        "space-before-blocks": "error",
+        "space-unary-ops": "error",
+        "wrap-regex": "error",
+        "space-before-function-paren": ["error", "never"],
+        "space-in-parens": ["error", "never"],
+        "semi-style": ["error", "last"],
+        "nonblock-statement-body-position": ["error", "beside"],
+        "yield-star-spacing": ["error", "both"],
+        "complexity": ["error", 2],
+        "func-style": ["error", "declaration"],
+        "strict": ["error", "never"],
+        "array-bracket-spacing": ["error", "never"],
+        "semi": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "dot-location": ["error", "property"],
+        "init-declarations": ["error", "always"],
+        "linebreak-style": ["error", "unix"],
+        "spaced-comment": ["error", "always"],
+        "indent": ["error", "tab"],
+        "comma-style": ["error", "last"],
+        "computed-property-spacing": ["error", "never"],
+        "consistent-this": ["error", "that"],
+        "eol-last": ["error", "always"],
+        "linebreak-style": ["error", "unix"],
+        "operator-linebreak": ["error", "before"],
+        "max-depth": ["error", 3],
+        "max-nested-callbacks": ["error", 3],
+        "one-var": ["error", "never"],
+        "max-params": ["error", 3],
+        "func-call-spacing": ["error", "never"],
+        "object-curly-spacing": ["error", "never"],
+        "object-curly-newline": ["error", {
+            "minProperties": 1
+        }],
+        "no-console": ["error", {
+            "allow": ["warn", "error", "info"]
+        }],
+        "generator-star-spacing": ["error", {
+            "before": true,
+            "after": true
+        }],
+        "no-multiple-empty-lines": ["error", {
+            "max": 1,
+            "maxEOF": 1
+        }],
+        "max-len": ["warn", {
+            "code": 80,
+            "tabWidth": 4,
+            "ignoreUrls": true,
+            "ignoreRegExpLiterals": true
+        }],
+        "line-comment-position": ["error", {
+            "position": "above"
+        }],
+        "key-spacing": ["error", {
+            "beforeColon": false
+        }],
+        "id-length": ["error", {
+            "min": 3,
+            "exceptions": ["fs", "fd"]
+        }],
+        "comma-spacing": ["error", {
+            "before": false,
+            "after": true
+        }],
+        "capitalized-comments": ["error", "always", {
+            "ignoreConsecutiveComments": true
+        }],
+        "no-restricted-modules": ["error", {
+            "patterns": ["lodash/*", "underscore"]
+        }],
+        "no-shadow": ["error", {
+            "allow": ["container"]
+        }],
+        "lines-around-comment": [
+            "error",
+            {
+                "beforeLineComment": true,
+                "afterLineComment": false
+            }
+        ]
+    }
+}

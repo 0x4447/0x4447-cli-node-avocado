@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "npm pack && npm install -g 0x4447-avocado-* && rm 0x4447-avocado-*",
+    "lint": "eslint .",
     "test": "mocha"
   },
   "repository": {
@@ -46,5 +47,8 @@
     "ncp": "2.0.0",
     "recursive-readdir": "2.2.2",
     "rimraf": "2.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0"
   }
 }
