@@ -4,24 +4,24 @@ let recursive = require('recursive-readdir');
 
 //
 //	Load all the JSON data for each page, so it can then be used to render
-//	the final pages
+//	the final pages.
 //
 module.exports = function(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("Reading JSON data");
+		console.info("Reading JSON data");
 
 		//
-		//	1.	Set the full path to the folder
+		//	1.	Set the full path to the folder.
 		//
 		let path = container.settings.dir + '/_input/data';
 
 		//
-		//	2.	Read all the files in a folder
+		//	2.	Read all the files in a folder.
 		//
 		let files = read(path);
 
@@ -44,7 +44,7 @@ module.exports = function(container)
 			//
 			//	2.	Load data as a JS Object.
 			//
-			let json = require(path + '/' + file_name);
+			let json = require(path + '/' + file_name);	// eslint-disable-line global-require
 
 			//
 			//	3.	Save the file data in to a new object.
@@ -59,15 +59,10 @@ module.exports = function(container)
 		container.json_data = tmp;
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
-		return resolve(container)
+		return resolve(container);
 
 	});
 
 };
-
-
-
-
-

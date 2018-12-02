@@ -4,16 +4,16 @@ let path = require('path');
 //
 //	Copy the content of the _input to the _output and to all the changes in
 //	the _output folder. This way we don't work on the original project, and
-//	CodeBuild have one clear location to use when coping the files to S3
+//	CodeBuild have one clear location to use when coping the files to S3.
 //
 module.exports = function(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("Copying");
+		console.info("Copying");
 
 		//
 		//	->	Start the chain
@@ -45,41 +45,41 @@ module.exports = function(container)
 //
 
 //
-//	Copy all the data to the folder for to make a preview
+//	Copy all the data to the folder for to make a preview.
 //
 function preview(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("Make Preview");
+		console.info("Make Preview");
 
 		//
-		//	1.	The path of the Input folder
+		//	1.	The path of the Input folder.
 		//
 		let source = container.settings.dir + '/_input';
 
 		//
-		//	2.	The path of the Output folder
+		//	2.	The path of the Output folder.
 		//
 		let target = container.settings.dir + '/_preview';
 
 		//
-		//	3.	The options for he NCP command
+		//	3.	The options for he NCP command.
 		//
 		let options = {
 			filter: filter
-		}
+		};
 
 		//
-		//	4. Copy the files from the Source to the Target location
+		//	4. Copy the files from the Source to the Target location.
 		//
 		ncp(source, target, options, function(error) {
 
 			//
-			//	1.	Check if an error occurred
+			//	1.	Check if an error occurred.
 			//
 			if(error)
 			{
@@ -87,9 +87,9 @@ function preview(container)
 			}
 
 			//
-			//	->	Move to the next chain
+			//	->	Move to the next chain.
 			//
-			return resolve(container)
+			return resolve(container);
 
 		});
 
@@ -97,41 +97,41 @@ function preview(container)
 }
 
 //
-//	Copy all the data to the folder for release
+//	Copy all the data to the folder for release.
 //
 function output(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("Make Output");
+		console.info("Make Output");
 
 		//
-		//	1.	The path of the Input folder
+		//	1.	The path of the Input folder.
 		//
 		let source = container.settings.dir + '/_preview';
 
 		//
-		//	2.	The path of the Output folder
+		//	2.	The path of the Output folder.
 		//
 		let target = container.settings.dir + '/_output';
 
 		//
-		//	3.	The options for he NCP command
+		//	3.	The options for he NCP command.
 		//
 		let options = {
 			filter: filter
-		}
+		};
 
 		//
-		//	4. Copy the files from the Source to the Target location
+		//	4. Copy the files from the Source to the Target location.
 		//
 		ncp(source, target, options, function(error) {
 
 			//
-			//	1.	Check if an error occurred
+			//	1.	Check if an error occurred.
 			//
 			if(error)
 			{
@@ -139,9 +139,9 @@ function output(container)
 			}
 
 			//
-			//	->	Move to the next chain
+			//	->	Move to the next chain.
 			//
-			return resolve(container)
+			return resolve(container);
 
 		});
 
@@ -158,12 +158,12 @@ function output(container)
 
 //
 //	This function is used to filter files that don't need to be copied
-//	in to the _output folder
+//	in to the _output folder.
 //
 function filter(full_path)
 {
 	//
-	//	1.	By default we assume that we want the file to be copied
+	//	1.	By default we assume that we want the file to be copied.
 	//
 	let state = true;
 
@@ -177,13 +177,13 @@ function filter(full_path)
 	//	3.	Check to see if there is something that we don't want to copy
 	//		to the new location.
 	//
-	if(file == '.git') 			{ state = false; }
-	if(file == 'output') 		{ state = false; }
-	if(file == '.DS_Store') 	{ state = false; }
-	if(file == 'README.md') 	{ state = false; }
-	if(file == 'LICENSE') 		{ state = false; }
-	if(file == 'data') 			{ state = false; }
-	if(file == 'views') 		{ state = false; }
+	if(file === '.git') 		{ state = false; }
+	if(file === 'output') 		{ state = false; }
+	if(file === '.DS_Store') 	{ state = false; }
+	if(file === 'README.md') 	{ state = false; }
+	if(file === 'LICENSE') 		{ state = false; }
+	if(file === 'data') 		{ state = false; }
+	if(file === 'views') 		{ state = false; }
 
 	//
 	//	->	Return our decision

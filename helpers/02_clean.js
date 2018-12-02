@@ -10,12 +10,12 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("Cleaning");
+		console.info("Cleaning");
 
 		//
-		//	->	Start the chain
+		//	->	Start the chain.
 		//
 		remove_preview(container)
 			.then(function(container) {
@@ -44,29 +44,29 @@ module.exports = function(container)
 };
 
 //
-//	Make sure the Preview folder is nice and clean
+//	Make sure the Preview folder is nice and clean.
 //
 function remove_preview(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("\tClean _preview");
+		console.info("\tClean _preview");
 
 		//
-		//	1.	Set the full path to the folder to be cleaned
+		//	1.	Set the full path to the folder to be cleaned.
 		//
 		let path_to_folder = container.settings.dir + '/_preview';
 
 		//
-		//	2.	Remove all the files inside the folder
+		//	2.	Remove all the files inside the folder.
 		//
 		rimraf(path_to_folder, function(error, result) {
 
 			//
-			//	->	Move to the next chain
+			//	->	Move to the next chain.
 			//
 			return resolve(container);
 
@@ -76,29 +76,29 @@ function remove_preview(container)
 }
 
 //
-//	Make sure the Output folder is nice and clean
+//	Make sure the Output folder is nice and clean.
 //
 function remove_output(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("\tClean _output");
+		console.info("\tClean _output");
 
 		//
-		//	1.	Set the full path to the folder to be cleaned
+		//	1.	Set the full path to the folder to be cleaned.
 		//
 		let path_to_folder = container.settings.dir + '/_output';
 
 		//
-		//	2.	Remove all the files inside the folder
+		//	2.	Remove all the files inside the folder.
 		//
 		rimraf(path_to_folder, function(error, result) {
 
 			//
-			//	->	Move to the next chain
+			//	->	Move to the next chain.
 			//
 			return resolve(container);
 
@@ -108,29 +108,29 @@ function remove_output(container)
 }
 
 //
-//	Create the Preview folder
+//	Create the Preview folder.
 //
 function create_preview(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("\tMkdri _preview");
+		console.info("\tMkdri _preview");
 
 		//
-		//	1.	Set the full path to the folder to be cleaned
+		//	1.	Set the full path to the folder to be cleaned.
 		//
 		let path_to_folder = container.settings.dir + '/_preview';
 
 		//
-		//	2.	Create the folder
+		//	2.	Create the folder.
 		//
 		fs.mkdirSync(path_to_folder);
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
 		return resolve(container);
 
@@ -138,29 +138,29 @@ function create_preview(container)
 }
 
 //
-//	Create the Output folder
+//	Create the Output folder.
 //
 function create_output(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("\tMkdri _output");
+		console.info("\tMkdri _output");
 
 		//
-		//	1.	Set the full path to the folder to be cleaned
+		//	1.	Set the full path to the folder to be cleaned.
 		//
 		let path_to_folder = container.settings.dir + '/_output';
 
 		//
-		//	2.	Create the folder
+		//	2.	Create the folder.
 		//
 		fs.mkdirSync(path_to_folder);
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
 		return resolve(container);
 

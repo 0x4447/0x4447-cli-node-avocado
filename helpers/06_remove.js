@@ -3,24 +3,24 @@ let path = require('path');
 let recursive = require('recursive-readdir');
 
 //
-//	Remove the .html extension that appears in the page menu section
+//	Remove the .html extension that appears in the page menu section.
 //
 module.exports = function(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
 		console.log("Removing .html from menu");
 
 		//
-		//	1.	Set the full path to the folder
+		//	1.	Set the full path to the folder.
 		//
 		let path_to_folder = container.settings.dir + '/_output';
 
 		//
-		//	2.	Read all the files in a folder
+		//	2.	Read all the files in a folder.
 		//
 		let files = fs.readdirSync(path_to_folder);
 
@@ -31,41 +31,40 @@ module.exports = function(container)
 		files.forEach(function(file_name) {
 
 			//
-			//	1.	Get the extension of the file
+			//	1.	Get the extension of the file.
 			//
 			let ext = path.extname(file_name);
 
 			//
-			//	2.	Check if we are dealing with a HTML page
+			//	2.	Check if we are dealing with a HTML page.
 			//
 			if(ext == '.html')
 			{
 				//
 				//	1.	Make a variable that will hold the path to the
-				//		file that we are working on
+				//		file that we are working on.
 				//
 				let path_to_file = path_to_folder + '/' + file_name;
 
 				//
-				//	2.	Read the content of the file
+				//	2.	Read the content of the file.
 				//
 				let file = fs.readFileSync(path_to_file);
 
 				//
-				//	3.	Remove the extension in the a href in the menu of the
-				//		page
+				//	3.	Remove the extension in the a href inside the files.
 				//
 				new_file = file.toString().replace(/(?<=[a-z])\.html/g, '');
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
 				//		so the system knows where and how this file should
-				//		behave
+				//		behave.
 				//
 				let fd = fs.openSync(path_to_file, 'w');
 
 				//
-				//	5.	Write the page on disk
+				//	5.	Write the page on disk.
 				//
 				fs.writeSync(fd, new_file, 0, new_file.length);
 			}
@@ -73,10 +72,9 @@ module.exports = function(container)
 		})
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
-		return resolve(container)
+		return resolve(container);
 
-	});
-
+	})
 };
