@@ -1,6 +1,6 @@
 {
   "name": "@0x4447/avocado",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "🥑 build the output of a front-end page to be hosted on S3 and delivered by CloudFront",
   "homepage": "https://0x4447.com/toolbox",
   "main": "index.js",
@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "npm pack && npm install -g 0x4447-avocado-* && rm 0x4447-avocado-*",
+    "lint": "eslint . --ignore-pattern test",
     "test": "mocha"
   },
   "repository": {
@@ -46,5 +47,8 @@
     "ncp": "2.0.0",
     "recursive-readdir": "2.2.2",
     "rimraf": "2.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0"
   }
 }

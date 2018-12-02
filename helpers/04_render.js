@@ -12,12 +12,12 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we
+		//	->	Show at which step are we.
 		//
-		console.log("Rendering");
+		console.info("Rendering");
 
 		//
-		//	->	Start the chain
+		//	->	Start the chain.
 		//
 		read_files_path(container)
 			.then(function(container) {
@@ -34,7 +34,7 @@ module.exports = function(container)
 
 			}).then(function(container) {
 
-				return resolve(container)
+				return resolve(container);
 
 			}).catch(function(error) {
 
@@ -46,35 +46,35 @@ module.exports = function(container)
 };
 
 //
-//	Read out all the file in the views folder
+//	Read out all the file in the views folder.
 //
 function read_files_path(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	1.	Set the full path to the folder
+		//	1.	Set the full path to the folder.
 		//
 		let path = container.settings.dir + '/_input/views';
 
 		//
-		//	2.	Get all the files from the View folder
+		//	2.	Get all the files from the View folder.
 		//
 		let files = read(path);
 
 		//
-		//	3.	Make clear variable where to store all the files
+		//	3.	Make clear variable where to store all the files.
 		//
 		let tmp = [];
 
 		//
 		//	4.	Loop over what we got back from the folder and remove what
-		//		we don't need
+		//		we don't need.
 		//
 		files.forEach(function(file) {
 
 			//
-			//	1.	Skip stuff that we don't care about
+			//	1.	Skip stuff that we don't care about.
 			//
 			if(file !== '.DS_Store')
 			{
@@ -84,19 +84,19 @@ function read_files_path(container)
 		});
 
 		//
-		//	x.	Save the files for the next promise
+		//	x.	Save the files for the next promise.
 		//
 		container.read_files_path = {
 			paths: tmp
-		}
+		};
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
-		return resolve(container)
+		return resolve(container);
 
 	});
-};
+}
 
 //
 //	Go over all the file that we found and actually read their content, so
@@ -108,18 +108,18 @@ function read_file_content(container)
 
 		//
 		//	1.	Create a variable where the content of the files will be
-		//		stored
+		//		stored.
 		//
 		let tmp = {};
 
 		//
 		//	2.	Loop over each file path we got back from the previous
-		//		promise
+		//		promise.
 		//
 		container.read_files_path.paths.forEach(function(file_name) {
 
 			//
-			//	1.	Build out the full path to the file
+			//	1.	Build out the full path to the file.
 			//
 			let path = container.settings.dir + '/_input/views/' + file_name;
 
@@ -131,7 +131,7 @@ function read_file_content(container)
 			if(file_name === '_frame.html')
 			{
 				//
-				//	1.	Read the file
+				//	1.	Read the file.
 				//
 				let file_frame = fs.readFileSync(path).toString();
 
@@ -146,15 +146,15 @@ function read_file_content(container)
 			//	3.	Everything else that is not the _frame should be read
 			//		as is.
 			//
-			if(file_name != '_frame.html')
+			if(file_name !== '_frame.html')
 			{
 				//
-				//	1.	Remove the extension from the file name
+				//	1.	Remove the extension from the file name.
 				//
 				let no_extension = file_name.split('.')[0];
 
 				//
-				//	2.	Read the content of the file
+				//	2.	Read the content of the file.
 				//
 				tmp[no_extension] = fs.readFileSync(path);
 			}
@@ -162,17 +162,17 @@ function read_file_content(container)
 		});
 
 		//
-		//	3.	Save the content of the file for the next promise
+		//	3.	Save the content of the file for the next promise.
 		//
 		container.file_body = tmp;
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
-		return resolve(container)
+		return resolve(container);
 
 	});
-};
+}
 
 //
 //	Take all the files that we loaded render the final form with the:
@@ -190,7 +190,7 @@ function render(container)
 		let tmp = {};
 
 		//
-		//	2.	Loop over every file with its content
+		//	2.	Loop over every file with its content.
 		//
 		for(let key in container.file_body)
 		{
@@ -201,16 +201,16 @@ function render(container)
 			//
 			let partial = {
 				body: container.file_body[key].toString()
-			}
+			};
 
 			//
-			//	2.	Save the data in a clean variable
+			//	2.	Save the data in a clean variable.
 			//
-			let data = container.json_data[key]
+			let data = container.json_data[key];
 
 			//
 			//	3.	Render the final page with the data that needs to be
-			//		replaced, and the partials
+			//		replaced, and the partials.
 			//
 			let final_file = container.page.render(data, partial);
 
@@ -222,17 +222,17 @@ function render(container)
 		}
 
 		//
-		//	3.	Save the final pages for the next promise
+		//	3.	Save the final pages for the next promise.
 		//
 		container.final_files = tmp;
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
-		return resolve(container)
+		return resolve(container);
 
 	});
-};
+}
 
 //
 //	Save the final pages that we rendered to the _input folder this way
@@ -244,19 +244,21 @@ function save_to_disk(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	1.	Loop over the array with the final rendered files
+		//	1.	Loop over the array with the final rendered files.
 		//
 		for(let file_name in container.final_files)
 		{
 			//
-			//	1.	Save the individual file in a clear variable
+			//	1.	Save the individual file in a clear variable.
 			//
 			let file = container.final_files[file_name];
 
 			//
-			//	2.	Create the file full path
+			//	2.	Create the file full path.
 			//
-			let path = container.settings.dir + '/_preview/' + file_name + '.html';
+			let path = container.settings.dir + '/_preview/'
+											  + file_name
+											  + '.html';
 
 			//
 			//	3.	Since we support nested folders, we heave to remove the
@@ -267,20 +269,20 @@ function save_to_disk(container)
 
 			//
 			//	4.	Create a File Descriptor based on the path that we made
-			//		so the system knows where and how this file should behave
+			//		so the system knows where and how this file should behave.
 			//
-			let fd = fs.openSync(path, 'w')
+			let fd = fs.openSync(path, 'w');
 
 			//
-			//	5.	Write the page on disk
+			//	5.	Write the page on disk.
 			//
 			fs.writeSync(fd, file, 0, file.length);
 		}
 
 		//
-		//	->	Move to the next chain
+		//	->	Move to the next chain.
 		//
-		return resolve(container)
+		return resolve(container);
 
 	});
-};
+}
