@@ -42,12 +42,12 @@
         "space-before-blocks": "error",
         "space-unary-ops": "error",
         "wrap-regex": "error",
+        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
         "space-before-function-paren": ["error", "never"],
         "space-in-parens": ["error", "never"],
         "semi-style": ["error", "last"],
         "nonblock-statement-body-position": ["error", "beside"],
         "yield-star-spacing": ["error", "both"],
-        "complexity": ["error", 2],
         "func-style": ["error", "declaration"],
         "strict": ["error", "never"],
         "array-bracket-spacing": ["error", "never"],
@@ -88,6 +88,7 @@
             "code": 80,
             "tabWidth": 4,
             "ignoreUrls": true,
+            "ignoreComments": true,
             "ignoreRegExpLiterals": true
         }],
         "line-comment-position": ["error", {
@@ -116,7 +117,7 @@
         "lines-around-comment": [
             "error",
             {
-                "beforeLineComment": true,
+                "beforeLineComment": false,
                 "afterLineComment": false
             }
         ]
