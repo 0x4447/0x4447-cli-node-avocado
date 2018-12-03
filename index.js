@@ -5,7 +5,7 @@ let npm = require('./package.json');
 let program = require('commander');
 
 //
-//	Load all the modules in order of execution
+//	Load all the modules in order of execution.
 //
 let start 	= require('./helpers/01_start');
 let clean 	= require('./helpers/02_clean');
@@ -24,7 +24,7 @@ let stop 	= require('./helpers/07_stop');
 //
 
 //
-//	The CLI options for this app. At this moment we just support Version
+//	The CLI options for this app. At this moment we just support Version.
 //
 program
 	.version(npm.version)
@@ -32,25 +32,25 @@ program
 	.option('-m, --monitor', 'Monitor for file change');
 
 //
-//	React when the user needs help
+//	React when the user needs help.
 //
 program.on('--help', function() {
 
 	//
 	//	Just add an empty line at the end of the help to make the text more
-	//	clear to the user
+	//	clear to the user.
 	//
 	console.info("");
 
 });
 
 //
-//	Pass the user input to the module
+//	Pass the user input to the module.
 //
 program.parse(process.argv);
 
 //
-//	Check if the user provided the dir source where to copy the file from
+//	Check if the user provided the dir source where to copy the file from.
 //
 if(!program.source)
 {
@@ -75,7 +75,7 @@ let data_folder  = process.cwd() + "/_input/data";
 let views_folder = process.cwd() + "/_input/views";
 
 //
-//	Monitor all the folders that we care about
+//	Monitor all the folders that we care about.
 //
 fs.watch(data_folder, 	function(eventType, filename) { main(); });
 fs.watch(views_folder,	function(eventType, filename) { main(); });
@@ -89,18 +89,18 @@ fs.watch(views_folder,	function(eventType, filename) { main(); });
 //
 
 //
-//	Start the conversion process
+//	Start the conversion process.
 //
 main();
 
 //
-//	this main function is responsible for creating the final output
-//	and can be run once or every time there is a change in the _input folder
+//	This main function is responsible for creating the final output
+//	and can be run once or every time there is a change in the _input folder.
 //
 function main()
 {
 	//
-	//	Create a variable that will be passed inside the chain
+	//	Create a variable that will be passed inside the chain.
 	//
 	let container = {
 		settings: {
@@ -144,7 +144,6 @@ function main()
 			//
 			if(!program.monitor)
 			{
-
 				//
 				//	1.	Exit the CLI with a positive message
 				//
@@ -153,9 +152,15 @@ function main()
 
 		}).catch(function(error) {
 
+			//
+			//	1.	Display to the human what went wrong.
+			//
 			console.error(error);
 
-			process.exit(-1);
+			//
+			//	->	Stop the app, and notify the OS of an error.
+			//
+			process.exit(1);
 
 		});
 }

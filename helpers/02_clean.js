@@ -43,6 +43,14 @@ module.exports = function(container)
 	});
 };
 
+//	 _____    _____     ____    __  __   _____    _____   ______    _____
+//	|  __ \  |  __ \   / __ \  |  \/  | |_   _|  / ____| |  ____|  / ____|
+//	| |__) | | |__) | | |  | | | \  / |   | |   | (___   | |__    | (___
+//	|  ___/  |  _  /  | |  | | | |\/| |   | |    \___ \  |  __|    \___ \
+//	| |      | | \ \  | |__| | | |  | |  _| |_   ____) | | |____   ____) |
+//	|_|      |_|  \_\  \____/  |_|  |_| |_____| |_____/  |______| |_____/
+//
+
 //
 //	Make sure the Preview folder is nice and clean.
 //
@@ -53,7 +61,7 @@ function remove_preview(container)
 		//
 		//	->	Show at which step are we.
 		//
-		console.info("\tClean _preview");
+		console.info("  - Clean _preview");
 
 		//
 		//	1.	Set the full path to the folder to be cleaned.
@@ -85,7 +93,7 @@ function remove_output(container)
 		//
 		//	->	Show at which step are we.
 		//
-		console.info("\tClean _output");
+		console.info("  - Clean _output");
 
 		//
 		//	1.	Set the full path to the folder to be cleaned.
@@ -117,7 +125,7 @@ function create_preview(container)
 		//
 		//	->	Show at which step are we.
 		//
-		console.info("\tMkdri _preview");
+		console.info("  - Mkdri _preview");
 
 		//
 		//	1.	Set the full path to the folder to be cleaned.
@@ -147,7 +155,7 @@ function create_output(container)
 		//
 		//	->	Show at which step are we.
 		//
-		console.info("\tMkdri _output");
+		console.info("  - Mkdri _output");
 
 		//
 		//	1.	Set the full path to the folder to be cleaned.
