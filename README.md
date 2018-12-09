@@ -24,93 +24,29 @@ After having created the useful [0x4447 Potato](https://www.npmjs.com/package/@0
 
 - Removes the `_preview` and `_output` folder, this way we have a clean slate.
 - Creates empty `_preview` and `_output` folder.
-- Reads the JSON files from the `data` folder to help Hogan enrich the pages.
+- Reads the JSON files from the `data` folder.
+- Reads the JSON files from the `env.json` file.
+- Merge the two data sets together.
 - Renders the final page using Hogan.
 - Save the result in the `_preview` and `_output` folder.
-- Removes the `.html` ending from any HREF on the page.
-
-The last steps is done, to make sure the URL on the page points to something like this https://0x4447.com/contact, instead of https://0x4447.com/contact.html. Since [0x4447 Potato](https://github.com/0x4447/0x4447-cli-node-potato) will strip the file format from the `.html` files.
 
 # Folder Structure of the Source Site
 
-If you'd like to try out Avocado, you can take a look at our [company website repository](https://github.com/0x4447/0x4447.com). The structure of the project was set to make it easy to use it with AWS CodeBuild.
-
 The root folder will contain the `_input` folder where the content of the site is located. The `data`, and `views` folders holds the data and the HTML files which are used to generate the previews and final output.
 
-All the other files and folders in the root directory are for CodeBuild itself.
+- Root
+- _input/
+  - assets/ - all your images, js, css and other.
+  - data/ - JSON files for each page from the `view` folder to enrich the page using Hogan.
+  - views/ - all pages in HTML form which can be organized using sub folders.
+  - any file to be included in the final page.
+- env.json - a JSON file that holds the environment variables that are uniquer per page deployment, and should not committed to the repository.
+
+If you'd like to try out Avocado, you can take a look at our [company website repository](https://github.com/0x4447/0x4447.com) for reference.
 
 # How to deliver the site locally
 
-### SSL Snake oil
-
-If you want to work on the content of the site on you local machine, then you can use Nginx for that. Nginx will use the dummy SSL certificate called `snakeoil`, to deliver the site over HTTPS. If you don't have it in your system you can generate one using the following command.
-
-```
-sudo apt-get install ssl-certsudo make-ssl-cert generate-default-snakeoilsudo
-usermod --append --groups ssl-cert $(whoami)
-```
-
-### Nginx Config
-
-Bellow you can find the bare minimum configuration to make it all work.
-
-```
-#
-#	Server Configuration
-#
-server {
-
-	listen 80;
-	listen [::]:80;
-
-	listen 443 ssl;
-	listen [::]:443 ssl;
-
-	#
-	#	Use the a default SSL for development.
-	#
-	include snippets/snakeoil.conf;
-
-	#
-	#	Tell which folder to server.
-	#
-	root /PATH/YOUR_SITE_NAME/_output;
-
-	#
-	#	Set the default file.
-	#
-	index /home;
-
-	#
-	#	Tell Nginx which url is this configuration for.
-	#
-	server_name login.example.loc;
-
-	#
-	#	Default configuration.
-	#
-	location / {
-
-		#
-		#	Since we deliver files with no extension, we need to tell
-		#	Nginx what those files are.
-		#
-		default_type text/html;
-
-		#
-		#	Tell the browser that any Origin file is OK.
-		#
-		add_header Access-Control-Allow-Origin *;
-
-		#
-		#	First attempt to serve request as file, then
-		#	as directory, then fall back to displaying a 404.
-		#
-		try_files $uri $uri.html $uri/ =404;
-
-	}
-}
-```
+If you have just a single page it is easy to check the page by opening the individual HTML file. But if you'd like to have a local setup with a custom local domain and a self signed SSL cert, you can [check our configuration that we use](https://github.com/0x4447/0x4447-The-Library/tree/master/programmer/front-end/local-setup).
 
 # Companion Software
 
