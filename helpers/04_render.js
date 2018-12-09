@@ -45,6 +45,14 @@ module.exports = function(container)
 	});
 };
 
+//	 _____    _____     ____    __  __   _____    _____   ______    _____
+//	|  __ \  |  __ \   / __ \  |  \/  | |_   _|  / ____| |  ____|  / ____|
+//	| |__) | | |__) | | |  | | | \  / |   | |   | (___   | |__    | (___
+//	|  ___/  |  _  /  | |  | | | |\/| |   | |    \___ \  |  __|    \___ \
+//	| |      | | \ \  | |__| | | |  | |  _| |_   ____) | | |____   ____) |
+//	|_|      |_|  \_\  \____/  |_|  |_| |_____| |_____/  |______| |_____/
+//
+
 //
 //	Read out all the file in the views folder.
 //
@@ -195,30 +203,41 @@ function render(container)
 		for(let key in container.file_body)
 		{
 			//
-			//	1.	Create a variable that holds the partials HTML file
-			//		used in conjunction with the _frame.html file to
-			//		create the final file.
+			//	1.	Make sure we have a key available.
 			//
-			let partial = {
-				body: container.file_body[key].toString()
-			};
+			if(container.json_data[key])
+			{
+				//
+				//	1.	Create a variable that holds the partials HTML file
+				//		used in conjunction with the _frame.html file to
+				//		create the final file.
+				//
+				let partial = {
+					body: container.file_body[key].toString()
+				};
 
-			//
-			//	2.	Save the data in a clean variable.
-			//
-			let data = container.json_data[key];
+				//
+				//	2.	Always merge the data of the page that we are dealing
+				//		with, with the env variable since you never know
+				//		where they are on the page.
+				//
+				let data = Object.assign(
+					container.json_data[key],
+					container.json_data.env
+				);
 
-			//
-			//	3.	Render the final page with the data that needs to be
-			//		replaced, and the partials.
-			//
-			let final_file = container.page.render(data, partial);
+				//
+				//	3.	Render the final page with the data that needs to be
+				//		replaced, and the partials.
+				//
+				let final_file = container.page.render(data, partial);
 
-			//
-			//	4.	Convert the page in to a buffer, so it is easy to save it
-			//		later to disk.
-			//
-			tmp[key] = Buffer.from(final_file);
+				//
+				//	4.	Convert the page in to a buffer, so it is easy to save it
+				//		later to disk.
+				//
+				tmp[key] = Buffer.from(final_file);
+			}
 		}
 
 		//
