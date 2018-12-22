@@ -1,20 +1,16 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+name: New Feature Request
+about: Describe the new feature that you'd like to see.
+title: New feature: SHORT_DESCRIPTION
+labels: enhancement
+assignees: davidgatti
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+# My Problem
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+TELL_US_ALL_ABOUT_IT
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+# Solution
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+TELL_US_HOW_WOULD_YOU_LIKE_US_TO_SOLVE_IT
