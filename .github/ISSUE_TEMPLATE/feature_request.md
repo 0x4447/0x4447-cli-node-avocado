@@ -1,7 +1,7 @@
 ---
-name: New Feature Request
-about: Describe the new feature that you'd like to see.
-title: New feature: SHORT_DESCRIPTION
+name: Feature request
+about: Suggest an idea for this project
+title: 'New feature: SHORT_DESCRIPTION'
 labels: enhancement
 assignees: davidgatti
 
