@@ -38,7 +38,7 @@ module.exports = function(container)
 			//
 			//	2.	Check if we are dealing with a HTML page.
 			//
-			if(ext == '.html')
+			if(ext === '.html')
 			{
 				//
 				//	1.	Make a variable that will hold the path to the
@@ -54,7 +54,12 @@ module.exports = function(container)
 				//
 				//	3.	Remove the extension in the a href inside the files.
 				//
-				new_file = file.toString().replace(/(?<=[a-z])\.html/g, '');
+
+				let fileName = file.toString();
+				let new_file = fileName.substr(
+					0,
+					fileName.lastIndexOf('.')
+				) || fileName;
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
@@ -69,12 +74,12 @@ module.exports = function(container)
 				fs.writeSync(fd, new_file, 0, new_file.length);
 			}
 
-		})
+		});
 
 		//
 		//	->	Move to the next chain.
 		//
 		return resolve(container);
 
-	})
+	});
 };
