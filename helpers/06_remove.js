@@ -12,7 +12,7 @@ module.exports = function(container)
 		//
 		//	->	Show at which step are we.
 		//
-		console.log("Removing .html from menu");
+		console.info("Removing .html from menu");
 
 		//
 		//	1.	Set the full path to the folder.
@@ -55,11 +55,7 @@ module.exports = function(container)
 				//	3.	Remove the extension in the a href inside the files.
 				//
 
-				let fileName = file.toString();
-				let new_file = fileName.substr(
-					0,
-					fileName.lastIndexOf('.')
-				) || fileName;
+				let new_file = file.toString().replace(/\.[^.]+$/g, '');
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
