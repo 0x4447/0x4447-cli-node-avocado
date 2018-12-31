@@ -55,7 +55,7 @@ module.exports = function(container)
 				//	3.	Remove the extension in the a href inside the files.
 				//
 
-				let new_file = file.toString().replace(/\.[^.]+$/g, '');
+				let new_file = file.toString().replace(/\s*([^\s]+?)\.html/gm, '$1');
 
 				//
 				//	4.	Create a File Descriptor based on the path that we made
