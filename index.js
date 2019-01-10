@@ -11,9 +11,10 @@ let start 	= require('./helpers/01_start');
 let clean 	= require('./helpers/02_clean');
 let data 	= require('./helpers/03_data');
 let render 	= require('./helpers/04_render');
-let copy 	= require('./helpers/05_copy');
-let remove 	= require('./helpers/06_remove');
-let stop 	= require('./helpers/07_stop');
+let diet = require('./helpers/05_diet');
+let copy 	= require('./helpers/06_copy');
+let remove 	= require('./helpers/07_remove');
+let stop 	= require('./helpers/08_stop');
 
 //   _____   ______   _______   _______   _____   _   _    _____    _____
 //  / ____| |  ____| |__   __| |__   __| |_   _| | \ | |  / ____|  / ____|
@@ -127,6 +128,10 @@ function main()
 		}).then(function(container) {
 
 			return copy(container);
+
+		}).then(function(container){
+
+			return diet(container)
 
 		}).then(function(container) {
 
