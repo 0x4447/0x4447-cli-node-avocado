@@ -1,88 +1,276 @@
 let fs = require('fs');
 let path = require('path')
-let recursive = require('recursive-readdir')
+let recursiveReadDir = require('recursive-readdir')
+
+
+module.exports = {
 
 //
-// Remove JS and HTML Comments from _input
+//   _____  _____ _____
+//  / ____|/ ____/ ____|
+// | |    | (___| (___
+// | |     \___ \\___ \
+// | |____ ____) |___) |
+//  \_____|_____/_____/
 //
 
-module.exports = function(container){
-  return new Promise(function(resolve, reject){
-    //
-    // -> Show at which step we are
-    //
-
-    console.info("Removing all comment...");
-
-    //
-    // 1. Set full path to the folder
-    //
-
-    let path_to_folder = container.settings.dir + '/_output';
-
-    //
-    // 2. Read all of the files in the folders
-    //
-
-    let files = fs.readdirSync(path_to_folder);
-
-    //
-    // 1. Check ever file and see if its an HTML file
-    //
-
-    files.forEach(function(file_name){
+  removeCssComments: function(container){
+    return new Promise(function(resolve, reject){
 
       //
-      // 2. Get file extension file_name
+      // -> Show at which step we are
       //
 
-      let ext = path.extname(file_name);
+      console.info("Removing all comments from .css files...");
 
       //
-      // Check that the file is html
+      // 1. Set full path to the folder
       //
 
-      if(ext === '.html'){
+
+      let path_to_folder = container.settings.dir + '/_output'
+
+      //
+      // 2. Read all of the files in the folders
+      //
+
+      recursiveReadDir(path_to_folder, function(err, files){
 
         //
-				//	1.	Make a variable that will hold the path to the
-				//		file that we are working on.
-				//
-
-				let path_to_file = path_to_folder + '/' + file_name;
-
-        //
-        // 2. Read file content
+        // 1. Go through every file in directory
         //
 
-        let file = fs.readFileSync(path_to_file)
+        files.forEach(function(file_name){
+          //
+          // 1. Search for .css extension name
+          //
+
+          let ext = path.extname(file_name);
+
+          //
+          // 2. Check that the ext is css
+          //
+
+          if(ext === '.css'){
+
+            //
+            // 1. Get File path and name
+            //
+
+            let file = fs.readFileSync(file_name);
+
+            //
+            // 2. Rewrite file and remove comments
+            //
+
+            let new_file = file.toString().replace(
+              /(\/\*[\s\S]*?\*\/)|\/\/.*$/gm,
+              ''
+            );
+
+            //
+    				//	3.	Create a File Descriptor based on the path that we made
+    				//		so the system knows where and how this file should
+    				//		behave.
+    				//
+
+            let fd = fs.openSync(file_name, 'w');
+
+            //
+            // Write the file to disk
+            //
+
+            fs.writeSync(fd, new_file, 0, new_file.length);
+          }
+        });
 
         //
-        // 3. Remove all the html and js comments
+        // -> Move onto next promise
         //
 
-        let new_file = file.toString().replace(
-          /(\<!--[\s\S]*?-->)|(\/\*[\s\S]*?\*\/)|[^\S:]\/\/.*$/gm,
-          ''
-        );
+        return resolve(container);
 
-        //
-				//	4.	Create a File Descriptor based on the path that we made
-				//		so the system knows where and how this file should
-				//		behave.
-				//
-				let fd = fs.openSync(path_to_file, 'w');
+      });
 
-				//
-				//	5.	Write the page on disk.
-				//
-				fs.writeSync(fd, new_file, 0, new_file.length);
-      }
     });
-    //
-    // -> Move onto next promise
-    //
+  },
 
-    return resolve(container)
-  });
+  //
+  //   _    _ _______ __  __ _
+  // | |  | |__   __|  \/  | |
+  // | |__| |  | |  | \  / | |
+  // |  __  |  | |  | |\/| | |
+  // | |  | |  | |  | |  | | |____
+  // |_|  |_|  |_|  |_|  |_|______|
+  //
+  removeHtmlComments: function(container){
+    return new Promise(function(resolve, reject){
+
+      //
+      // -> Show at which step we are
+      //
+
+      console.info("Removing all comments from .html files...");
+
+      //
+      // 1. Set full path to the folder
+      //
+
+
+      let path_to_folder = container.settings.dir + '/_output'
+
+      //
+      // 2. Read all of the files in the folders
+      //
+
+      recursiveReadDir(path_to_folder, function(err, files){
+
+        //
+        // 1. Go through every file in directory
+        //
+
+        files.forEach(function(file_name){
+          //
+          // 1. Search for .css extension name
+          //
+
+          let ext = path.extname(file_name);
+
+          //
+          // 2. Check that the ext is HTML
+          //
+
+          if(ext === '.html'){
+
+            //
+            // 1. Get File path and name
+            //
+
+            let file = fs.readFileSync(file_name);
+
+            //
+            // 2. Rewrite file and remove comments
+            //
+
+            let new_file = file.toString().replace(
+              /(\<!--[\s\S]*?-->)|(\/\*[\s\S]*?\*\/)|[^\S:]\/\/.*$/gm,
+              ''
+            );
+
+            //
+    				//	3.	Create a File Descriptor based on the path that we made
+    				//		so the system knows where and how this file should
+    				//		behave.
+    				//
+
+            let fd = fs.openSync(file_name, 'w');
+
+            //
+            // Write the file to disk
+            //
+
+            fs.writeSync(fd, new_file, 0, new_file.length);
+          }
+        });
+
+        //
+        // -> Move onto next promise
+        //
+
+        return resolve(container);
+
+      });
+
+    });
+  },
+
+  //
+  //            _  _____
+  //          | |/ ____|
+  //         | | (___
+  //    _   | |\___ \
+  //  | |__| |____) |
+  //  \____/|_____/
+  //
+
+  removeJsComments: function(container){
+    return new Promise(function(resolve, reject){
+
+      //
+      // -> Show at which step we are
+      //
+
+      console.info("Removing all comments from .js files...");
+
+      //
+      // 1. Set full path to the folder
+      //
+
+
+      let path_to_folder = container.settings.dir + '/_output'
+
+      //
+      // 2. Read all of the files in the folders
+      //
+
+      recursiveReadDir(path_to_folder, function(err, files){
+
+        //
+        // 1. Go through every file in directory
+        //
+
+        files.forEach(function(file_name){
+          //
+          // 1. Search for .css extension name
+          //
+
+          let ext = path.extname(file_name);
+
+          //
+          // 2. Check that the ext is JS
+          //
+
+          if(ext === '.js'){
+
+            //
+            // 1. Get File path and name
+            //
+
+            let file = fs.readFileSync(file_name);
+
+            //
+            // 2. Rewrite file and remove comments
+            //
+
+            let new_file = file.toString().replace(
+              /(\/\*[\s\S]*?\*\/)|\/\/.*$/gm,
+              ''
+            );
+
+            //
+    				//	3.	Create a File Descriptor based on the path that we made
+    				//		so the system knows where and how this file should
+    				//		behave.
+    				//
+
+            let fd = fs.openSync(file_name, 'w');
+
+            //
+            // Write the file to disk
+            //
+
+            fs.writeSync(fd, new_file, 0, new_file.length);
+          }
+        });
+
+        //
+        // -> Move onto next promise
+        //
+
+        return resolve(container);
+
+      });
+
+    });
+  }
 }

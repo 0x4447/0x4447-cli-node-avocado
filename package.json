@@ -45,7 +45,6 @@
     "mkdirp": "^0.5.1",
     "mocha": "5.1.0",
     "ncp": "2.0.0",
-    "package.json": "^2.0.1",
     "recursive-readdir": "2.2.2",
     "rimraf": "2.6.2"
   },
