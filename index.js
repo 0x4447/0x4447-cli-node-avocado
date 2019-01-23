@@ -121,7 +121,7 @@ function main()
 
 			return data(container);
 
-		}).then(function(container) { 
+		}).then(function(container) {
 
 			return render(container);
 
@@ -135,11 +135,7 @@ function main()
 
 		}).then(function(container){
 
-			return diet.removeCssComments(container)
-
-		}).then(function(container){
-
-			return diet.removeJsComments(container)
+			return diet.removeJsCssComments(container)
 
 		}).then(function(container) {
 
