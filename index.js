@@ -129,13 +129,13 @@ function main()
 
 			return copy(container);
 
-		}).then(function(container){
+		}).then(function(container) {
 
-			return diet.removeHtmlComments(container)
+			return diet.removeHtmlComments(container);
 
-		}).then(function(container){
+		}).then(function(container) {
 
-			return diet.removeJsCssComments(container)
+			return diet.removeJsCssComments(container);
 
 		}).then(function(container) {
 
