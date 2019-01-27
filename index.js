@@ -11,7 +11,7 @@ let start 	= require('./helpers/01_start');
 let clean 	= require('./helpers/02_clean');
 let data 	= require('./helpers/03_data');
 let render 	= require('./helpers/04_render');
-let diet = require('./helpers/05_diet');
+let diet 	= require('./helpers/05_diet');
 let copy 	= require('./helpers/06_copy');
 let remove 	= require('./helpers/07_remove');
 let stop 	= require('./helpers/08_stop');
@@ -131,11 +131,7 @@ function main()
 
 		}).then(function(container) {
 
-			return diet.removeHtmlComments(container);
-
-		}).then(function(container) {
-
-			return diet.removeJsCssComments(container);
+			return diet(container);
 
 		}).then(function(container) {
 
