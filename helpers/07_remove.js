@@ -54,7 +54,6 @@ module.exports = function(container)
 				//
 				//	3.	Remove the extension in the a href inside the files.
 				//
-
 				let new_file = file.toString().replace(/\s*([^\s]+?)\.html/gm, ' $1');
 
 				//
