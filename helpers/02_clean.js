@@ -155,7 +155,7 @@ function create_output(container)
 		//
 		//	->	Show at which step are we.
 		//
-		console.info("  - Mkdri _output");
+		console.info("  - Mkdir _output");
 
 		//
 		//	1.	Set the full path to the folder to be cleaned.
