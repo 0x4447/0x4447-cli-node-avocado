@@ -133,6 +133,9 @@ function remove_html_comments(container)
 //
 //	Remove JS and CSS type comments from the _output folder.
 //
+//		WARNING: this two languages are combined in to the same promise
+//					since their commenting style is identical.
+//
 function remove_js_css_comments(container)
 {
 	return new Promise(function(resolve, reject) {
