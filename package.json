@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "npm pack && npm install -g 0x4447-avocado-* && rm 0x4447-avocado-*",
+    "build-windows": "npm link",
     "lint": "eslint . --ignore-pattern test",
     "test": "mocha"
   },
