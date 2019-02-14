@@ -1,6 +1,6 @@
 describe('For TravisCI', function() {
 
-	it('It work!', function() {
+	it('It works!', function() {
 
 		return;
 
