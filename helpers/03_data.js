@@ -169,7 +169,7 @@ function load_env_data(container)
 }
 
 //
-//	Once we have all the data for the pages and the Env variables we merge
+//	Once we have all the data for the pages and the Env variables, we merge
 //	them together so the Hogan templating engine can do it's magic and save
 //	us some time and effort.
 //
