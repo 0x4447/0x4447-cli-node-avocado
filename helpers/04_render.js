@@ -4,15 +4,15 @@ let hogan = require("hogan.js");
 let mkdirp = require('mkdirp');
 
 //
-//	Render all the file using Hogan, and convert the template files in to
-//	the final form.
+//	Render all the files using Hogan, and convert the template files in to
+//	their final form.
 //
 module.exports = function(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Rendering");
 
@@ -71,7 +71,7 @@ function read_files_path(container)
 		let files = read(path);
 
 		//
-		//	3.	Make clear variable where to store all the files.
+		//	3.	Make a clear variable where all the files will be stored
 		//
 		let tmp = [];
 
@@ -107,7 +107,7 @@ function read_files_path(container)
 }
 
 //
-//	Go over all the file that we found and actually read their content, so
+//	Go over all the files whos content was read, so
 //	we can use it later to render the final page.
 //
 function read_file_content(container)
@@ -133,8 +133,7 @@ function read_file_content(container)
 
 			//
 			//	2.	Treat the _frame file as a special case. Since this file
-			//		is the frame used to build the final file, when we are
-			//		going to render the final file using Hogan.
+			//		is the frame used to build the final file when using Hogan.
 			//
 			if(file_name === '_frame.html')
 			{
@@ -183,7 +182,7 @@ function read_file_content(container)
 }
 
 //
-//	Take all the files that we loaded render the final form with the:
+//	Take all the files that we loaded and render the final form with the:
 //
 //		- Context (data)
 //		- Partials
@@ -193,12 +192,12 @@ function render(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	1.	Create temporary variable to store all the rendered page.
+		//	1.	Create temporary variable to store all the rendered pages.
 		//
 		let tmp = {};
 
 		//
-		//	2.	Loop over every file with its content.
+		//	2.	Loop over every file and its contents.
 		//
 		for(let key in container.file_body)
 		{
@@ -233,7 +232,7 @@ function render(container)
 				let final_file = container.page.render(data, partial);
 
 				//
-				//	4.	Convert the page in to a buffer, so it is easy to save it
+				//	4.	Convert the page into a buffer, so it is easy to save it
 				//		later to disk.
 				//
 				tmp[key] = Buffer.from(final_file);
@@ -263,7 +262,7 @@ function save_to_disk(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	1.	Loop over the array with the final rendered files.
+		//	1.	Loop over the array of the final rendered files.
 		//
 		for(let file_name in container.final_files)
 		{
