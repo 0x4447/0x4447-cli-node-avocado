@@ -2,6 +2,7 @@
 
 let fs = require('fs');
 let npm = require('./package.json');
+let path = require('path');
 let program = require('commander');
 
 //
@@ -30,7 +31,8 @@ let stop 	= require('./helpers/08_stop');
 program
 	.version(npm.version)
 	.option('-s, --source', 'Path to the folder to process')
-	.option('-m, --monitor', 'Monitor for file change');
+	.option('-m, --monitor', 'Monitor for file change')
+	.option('-e, --envfile [envFile]', 'Load custom .env file');
 
 //
 //	React when the user needs help.
@@ -57,6 +59,59 @@ if(!program.source)
 {
 	console.info('Missing source');
 	process.exit(-1);
+}
+
+//
+// Load custom .env file from user to test in a custom enviornment
+//
+
+if(program.envfile)
+{
+
+	//
+	// 0. Check to see if the env file .json
+	//
+
+	let ext = path.extname(program.envfile);
+
+	if(ext != '.json'){
+		console.info(
+			'\x1b[31m',
+			`\nThe env file you provided was not a json file!!!  \n\n >> ${program.envfile} << \n`);
+
+		process.exit(-1);
+	}
+
+	//
+	// 1. Save the path to the .env file
+	//
+
+	let env_location = process.cwd() + '\\' + program.envfile;
+
+	//
+	// 2. Get old env from process
+	//
+
+	let old_env = process.env;
+
+	//
+	// 3. Load the new env json file and convert it to JSON
+	//
+
+	let new_env = fs.readFileSync(env_location);
+
+	//
+	// 4. Convert the string to json data
+	//
+
+	let convert_to_json = JSON.parse(new_env);
+
+	//
+	// 5. Assign the values to the proccess.env object
+	//
+
+	process.env = convert_to_json;
+
 }
 
 //	 _        _____    _____   _______   _   _   ______   _____     _____
