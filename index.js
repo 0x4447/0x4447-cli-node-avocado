@@ -74,10 +74,20 @@ if(program.envfile)
 
 	let ext = path.extname(program.envfile);
 
-	if(ext != '.json'){
+	if(ext !== '.json') {
+
+		//
+		// Error if the file is not json type
+		//
+
 		console.info(
 			'\x1b[31m',
-			`\nThe env file you provided was not a json file!!!  \n\n >> ${program.envfile} << \n`);
+			`\nThe env file you provided was not a json file! \n\n
+					>> ${program.envfile} << \n`);
+
+		//
+		// Exit with exit code -1
+		//
 
 		process.exit(-1);
 	}
@@ -86,7 +96,7 @@ if(program.envfile)
 	// 1. Save the path to the .env file
 	//
 
-	let env_location = process.cwd() + '\\' + program.envfile;
+	let env_location = process.cwd() + '/' + program.envfile;
 
 	//
 	// 2. Get old env from process
