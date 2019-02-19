@@ -121,7 +121,6 @@ if(program.envfile)
 	//
 
 	process.env = convert_to_json;
-	console.log(process.env);
 }
 
 //	 _        _____    _____   _______   _   _   ______   _____     _____
