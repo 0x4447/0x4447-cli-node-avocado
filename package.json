@@ -40,12 +40,14 @@
     "aws"
   ],
   "dependencies": {
+    "chai": "^4.2.0",
     "commander": "2.15.1",
     "fs-readdir-recursive": "^1.1.0",
     "hogan.js": "3.0.2",
     "mkdirp": "^0.5.1",
     "mocha": "5.1.0",
     "ncp": "2.0.0",
+    "npm": "^6.8.0",
     "recursive-readdir": "2.2.2",
     "rimraf": "2.6.2"
   },
