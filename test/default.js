@@ -1,22 +1,37 @@
 const exec = require("child_process").exec;
-const npm = require("npm");
-const process = require("process");
 const chai = require("chai");
 
 describe('For TravisCI', function() {
 
-	it('Build test site to make Avocado works.', function(done) {
+	it('Build test site to make sure this version works.', function(done) {
+
+		//
+		// Execute index.js on the sample site, if it builds it means
+		// this version works.
+		//
 
 		exec('cd ./test/sample_site && node ../../index.js -s .', function(error, stdout, stderr) {
+
+			//
+			// If error is not null it means the version has failed
+			//
+
 			if (error !== null) {
 		        console.log('exec error: ' + error);
-				process.exit(-1);
 		    }
-			chai.assert(null, error);
 
-		    console.log('stdout: ' + stdout);
-		    console.log('stderr: ' + stderr);
+			//
+			// Force the test to fail on Travis
+			//
+
+			chai.assert.equal(null, error);
+
+		    //
+			// If the tests dont fail then done() will execute and pass
+			//
+
 			done()
+
 		});
 
 	});
