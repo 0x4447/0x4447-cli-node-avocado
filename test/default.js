@@ -10,7 +10,8 @@ describe('For TravisCI', function() {
 		// this version works.
 		//
 
-		exec('cd ./test/sample_site && node ../../index.js -s .', function(error, stdout, stderr) {
+		exec('cd ./test/sample_site && node ../../index.js -s .',
+		function(error, stdout, stderr) {
 
 			//
 			// If error is not null it means the version has failed
