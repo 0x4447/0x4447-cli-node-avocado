@@ -3,7 +3,7 @@ let read = require('fs-readdir-recursive');
 let recursive = require('recursive-readdir');
 
 //
-//	Load all the JSON data for each page, so it can then be used to render
+//	Load all of the JSON data for each page, so it can then be used to render
 //	the final pages.
 //
 module.exports = function(container)
@@ -11,7 +11,7 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Reading");
 
@@ -50,7 +50,7 @@ module.exports = function(container)
 //
 
 //
-//	Load all the JSON file that contain data for each page to be replaced, like
+//	Load all of the JSON files that contain data for each page to be replaced, like
 //	the tile of the page, description and anything else that is needed.
 //
 function load_page_data(container)
@@ -58,7 +58,7 @@ function load_page_data(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Reading page data");
 
@@ -123,7 +123,7 @@ function load_env_data(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Reading env data");
 
@@ -178,7 +178,7 @@ function load_env_data(container)
 
 //
 //	Once we have all the data for the pages and the Env variables, we merge
-//	them together so the Hogan templating engine, can do it's magic and save
+//	them together so the Hogan templating engine can do it's magic and save
 //	us some time and effort.
 //
 function merge_the_data(container)
@@ -186,7 +186,7 @@ function merge_the_data(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Data merge");
 

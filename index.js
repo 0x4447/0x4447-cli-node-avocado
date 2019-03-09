@@ -6,7 +6,7 @@ let path = require('path');
 let program = require('commander');
 
 //
-//	Load all the modules in order of execution.
+//	Load all the modules in the order of execution.
 //
 let start 	= require('./helpers/01_start');
 let clean 	= require('./helpers/02_clean');
@@ -191,7 +191,7 @@ function main()
 		}).catch(function(error) {
 
 			//
-			//	1.	Display to the human what went wrong.
+			//	1.	Display to the user what went wrong.
 			//
 			console.error(error);
 

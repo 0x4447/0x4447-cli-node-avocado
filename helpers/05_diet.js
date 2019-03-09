@@ -10,7 +10,7 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Dieting");
 
@@ -133,7 +133,7 @@ function remove_html_comments(container)
 //
 //	Remove JS and CSS type comments from the _output folder.
 //
-//		WARNING: this two languages are combined in to the same promise
+//		WARNING: these two languages are combined in to the same promise
 //					since their commenting style is identical.
 //
 function remove_js_css_comments(container)
@@ -141,7 +141,7 @@ function remove_js_css_comments(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Removing Css And Js Comments...");
 

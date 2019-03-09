@@ -1,6 +1,6 @@
 let fs = require('fs');
 let path = require('path');
-let recursive = require('recursive-readdir');
+let read = require('fs-readdir-recursive');
 
 //
 //	Remove the .html extension that appears in the page menu section.
@@ -10,7 +10,7 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Removing .html from menu");
 
@@ -22,7 +22,7 @@ module.exports = function(container)
 		//
 		//	2.	Read all the files in a folder.
 		//
-		let files = fs.readdirSync(path_to_folder);
+		let files = read(path_to_folder);
 
 		//
 		//	1.	Go over each URI that we got and find out if we
