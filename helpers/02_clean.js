@@ -10,7 +10,7 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Cleaning");
 
@@ -59,7 +59,7 @@ function remove_preview(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Clean _preview");
 
@@ -91,7 +91,7 @@ function remove_output(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Clean _output");
 
@@ -123,7 +123,7 @@ function create_preview(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Mkdri _preview");
 
@@ -153,7 +153,7 @@ function create_output(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Mkdir _output");
 

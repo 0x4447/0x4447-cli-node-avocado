@@ -10,7 +10,7 @@ module.exports = function(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Dieting");
 
@@ -51,89 +51,89 @@ function remove_html_comments(container)
 {
 	return new Promise(function(resolve, reject) {
 
-			//
-			//	-> Show at which step we're in.
-			//
-			console.info("  - Removing HTML Comments...");
+		//
+		//	-> Show at which step we're in.
+		//
+		console.info("  - Removing HTML Comments...");
+
+		//
+		//	1. Set the full path to the _output folder.
+		//
+		let path_to_folder = container.settings.dir + '/_output';
+
+		//
+		//	2. Read all the file inside the _output directory.
+		//
+		let files = fs.readdirSync(path_to_folder);
+
+		//
+		//	3.	Go over each URI that we got and find out if we
+		//		are dealing with a HTML page.
+		//
+		files.forEach(function(file_name) {
 
 			//
-			//	1. Set the full path to the _output folder.
+			//	1.	Get the extension of the file.
 			//
-			let path_to_folder = container.settings.dir + '/_output';
+			let ext = path.extname(file_name);
 
 			//
-			//	2. Read all the file inside the _output directory.
+			//	2.	Check if we are dealing with a HTML page.
 			//
-			let files = fs.readdirSync(path_to_folder);
-
-			//
-			//	3.	Go over each URI that we got and find out if we
-			//		are dealing with a HTML page.
-			//
-			files.forEach(function(file_name) {
+			if(ext === '.html')
+			{
+				//
+				//	1.	Make a variable that will hold the path to the
+				//		file that we are working on.
+				//
+				let path_to_file = path_to_folder + '/' + file_name;
 
 				//
-				//	1.	Get the extension of the file.
+				//	2.	Read the content of the file.
 				//
-				let ext = path.extname(file_name);
+				let file = fs.readFileSync(path_to_file);
 
 				//
-				//	2.	Check if we are dealing with a HTML page.
+				//	3.	Remove the HTML Comments from the files
 				//
-				if(ext === '.html')
-				{
-					//
-					//	1.	Make a variable that will hold the path to the
-					//		file that we are working on.
-					//
-					let path_to_file = path_to_folder + '/' + file_name;
+				let no_comment_file = file.toString().replace(
+					/(<!--[\s\S]*?-->).*$/gm,
+					''
+				);
 
-					//
-					//	2.	Read the content of the file.
-					//
-					let file = fs.readFileSync(path_to_file);
+				//
+				//	4.	Create a File Descriptor based on the path that we
+				//		made so the system knows where and how this file
+				//		should behave.
+				//
+				let fd = fs.openSync(path_to_file, 'w');
 
-					//
-					//	3.	Remove the HTML Comments from the files
-					//
-					let no_comment_file = file.toString().replace(
-						/(<!--[\s\S]*?-->).*$/gm,
-						''
-					);
-
-					//
-					//	4.	Create a File Descriptor based on the path that we
-					//		made so the system knows where and how this file
-					//		should behave.
-					//
-					let fd = fs.openSync(path_to_file, 'w');
-
-					//
-					//	5.	Overwrite the original file with the new one
-					//		that we just created without comments.
-					//
-					fs.writeSync(
-						fd,
-						no_comment_file,
-						0,
-						no_comment_file.length
-					);
-				}
-
-			});
-
-			//
-			// -> Move to the next chain
-			//
-			return(resolve(container));
+				//
+				//	5.	Overwrite the original file with the new one
+				//		that we just created without comments.
+				//
+				fs.writeSync(
+					fd,
+					no_comment_file,
+					0,
+					no_comment_file.length
+				);
+			}
 
 		});
+
+		//
+		// -> Move to the next chain
+		//
+		return(resolve(container));
+
+	});
 }
 
 //
 //	Remove JS and CSS type comments from the _output folder.
 //
-//		WARNING: this two languages are combined in to the same promise
+//		WARNING: these two languages are combined in to the same promise
 //					since their commenting style is identical.
 //
 function remove_js_css_comments(container)
@@ -141,7 +141,7 @@ function remove_js_css_comments(container)
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("  - Removing Css And Js Comments...");
 

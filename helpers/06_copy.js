@@ -4,14 +4,14 @@ let path = require('path');
 //
 //	Copy the content of the _input to the _output and to all the changes in
 //	the _output folder. This way we don't work on the original project, and
-//	CodeBuild have one clear location to use when coping the files to S3.
+//	CodeBuild has one clear location to use when copying the files to S3.
 //
 module.exports = function(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Copying");
 
@@ -45,14 +45,14 @@ module.exports = function(container)
 //
 
 //
-//	Copy all the data to the folder for to make a preview.
+//	Copy all the data to the folder to make a preview.
 //
 function preview(container)
 {
 	return new Promise(function(resolve, reject) {
 
 		//
-		//	->	Show at which step are we.
+		//	->	Show at which step we are on.
 		//
 		console.info("Make Preview");
 
@@ -67,7 +67,7 @@ function preview(container)
 		let target = container.settings.dir + '/_preview';
 
 		//
-		//	3.	The options for he NCP command.
+		//	3.	The options for the NCP command.
 		//
 		let options = {
 			filter: filter
@@ -119,7 +119,7 @@ function output(container)
 		let target = container.settings.dir + '/_output';
 
 		//
-		//	3.	The options for he NCP command.
+		//	3.	The options for the NCP command.
 		//
 		let options = {
 			filter: filter
