@@ -134,13 +134,21 @@ function load_env_data(container)
 		let env_path = container.settings.dir + '/env.json';
 
 		//
-		//	1.	Since this file doesn't have to exists, we must check if
+		//	2.	Check if the user provided a custom env file in the CLI.
+		//
+		if(container.settings.envfile)
+		{
+			env_path = container.settings.envfile;
+		}
+
+		//
+		//	3.	Since this file doesn't have to exists, we must check if
 		//		we have it or not.
 		//
 		let env_exists = fs.existsSync(env_path);
 
 		//
-		//	2.	If this project doesn't have the env file, skip this step.
+		//	4.	If this project doesn't have the env file, skip this step.
 		//
 		if(env_exists)
 		{

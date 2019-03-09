@@ -2,6 +2,7 @@
 
 let fs = require('fs');
 let npm = require('./package.json');
+let path = require('path');
 let program = require('commander');
 
 //
@@ -30,7 +31,8 @@ let stop 	= require('./helpers/08_stop');
 program
 	.version(npm.version)
 	.option('-s, --source', 'Path to the folder to process')
-	.option('-m, --monitor', 'Monitor for file change');
+	.option('-m, --monitor', 'Monitor for file change')
+	.option('-e, --envfile [envFile]', 'Load custom .env file');
 
 //
 //	React when the user needs help.
@@ -55,8 +57,38 @@ program.parse(process.argv);
 //
 if(!program.source)
 {
-	console.info('Missing source');
+	console.info('\n');
+	console.info('\tMissing source');
+	console.info('\n');
+
 	process.exit(-1);
+}
+
+//
+//	Check if the user provided a custom CLI and check if it has a valid
+//	extension.
+//
+if(program.envfile)
+{
+	//
+	//	1. Check to see if the env file is .json.
+	//
+	let extension = path.extname(program.envfile);
+
+	//
+	//	2.	Error if the file is not json type.
+	//
+	if(extension !== '.json')
+	{
+		console.info('\n');
+		console.info("\tThe env file you provided was not a json file!");
+		console.info('\n');
+
+		//
+		// Exit with exit code -1
+		//
+		process.exit(-1);
+	}
 }
 
 //	 _        _____    _____   _______   _   _   ______   _____     _____
@@ -105,7 +137,8 @@ function main()
 	//
 	let container = {
 		settings: {
-			dir: process.cwd() + "/" + process.argv[3]
+			dir: process.cwd() + "/" + process.argv[3],
+			envfile: program.envfile
 		}
 	};
 
