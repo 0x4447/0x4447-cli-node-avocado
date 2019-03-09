@@ -57,60 +57,38 @@ program.parse(process.argv);
 //
 if(!program.source)
 {
-	console.info('Missing source');
+	console.info('\n');
+	console.info('\tMissing source');
+	console.info('\n');
+
 	process.exit(-1);
 }
 
 //
-// Load custom .env file from user to test in a custom enviornment
+//	Check if the user provided a custom CLI and check if it has a valid
+//	extension.
 //
 if(program.envfile)
 {
 	//
 	//	1. Check to see if the env file is .json.
 	//
-	let ext = path.extname(program.envfile);
+	let extension = path.extname(program.envfile);
 
 	//
 	//	2.	Error if the file is not json type.
 	//
-	if(ext !== '.json') {
-
-		console.info(
-			'\x1b[31m',
-			`\nThe env file you provided was not a json file! \n\n
-			>> ${program.envfile} << \n`);
+	if(extension !== '.json')
+	{
+		console.info('\n');
+		console.info("\tThe env file you provided was not a json file!");
+		console.info('\n');
 
 		//
 		// Exit with exit code -1
 		//
 		process.exit(-1);
 	}
-
-	//
-	//	3. Save the path to the .env file.
-	//
-	let env_location = path.join(process.cwd(), program.envfile);
-
-	//
-	//	4. Get old env from process.
-	//
-	let old_env = process.env;
-
-	//
-	//	5. Load the new env json file and convert it to JSON.
-	//
-	let new_env = fs.readFileSync(env_location);
-
-	//
-	//	6. Convert the string to json data.
-	//
-	let convert_to_json = JSON.parse(new_env);
-
-	//
-	//	7. Assign the values to the proccess.env object.
-	//
-	process.env = convert_to_json;
 }
 
 //	 _        _____    _____   _______   _   _   ______   _____     _____
@@ -159,7 +137,8 @@ function main()
 	//
 	let container = {
 		settings: {
-			dir: process.cwd() + "/" + process.argv[3]
+			dir: process.cwd() + "/" + process.argv[3],
+			envfile: program.envfile
 		}
 	};
 

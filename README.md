@@ -40,7 +40,7 @@ The root folder will contain the `_input` folder where the content of the site i
   - data/ - JSON files for each page from the `view` folder to enrich the page using Hogan.
   - views/ - all pages in HTML form which can be organized using sub folders.
   - any file to be included in the final page.
-- env.json - a JSON file that holds the environment variables that are uniquer per page deployment, and should not committed to the repository.
+- env.json - a JSON file that holds the environment variables that are uniquer per page deployment, and should not committed to the repository. Worth knowing: use the help option to find out how to pass different env file.
 
 If you'd like to try out Avocado, you can take a look at our [company website repository](https://github.com/0x4447/0x4447.com) for reference.
 
