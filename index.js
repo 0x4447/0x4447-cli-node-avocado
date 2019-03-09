@@ -64,20 +64,16 @@ if(!program.source)
 //
 // Load custom .env file from user to test in a custom enviornment
 //
-
 if(program.envfile)
 {
-
 	//
-	// 0. Check to see if the env file is .json
+	//	1. Check to see if the env file is .json.
 	//
-
 	let ext = path.extname(program.envfile);
 
 	//
-	// Error if the file is not json type
+	//	2.	Error if the file is not json type.
 	//
-
 	if(ext !== '.json') {
 
 		console.info(
@@ -88,38 +84,32 @@ if(program.envfile)
 		//
 		// Exit with exit code -1
 		//
-
 		process.exit(-1);
 	}
 
 	//
-	// 1. Save the path to the .env file
+	//	3. Save the path to the .env file.
 	//
-
 	let env_location = path.join(process.cwd(), program.envfile);
 
 	//
-	// 2. Get old env from process
+	//	4. Get old env from process.
 	//
-
 	let old_env = process.env;
 
 	//
-	// 3. Load the new env json file and convert it to JSON
+	//	5. Load the new env json file and convert it to JSON.
 	//
-
 	let new_env = fs.readFileSync(env_location);
 
 	//
-	// 4. Convert the string to json data
+	//	6. Convert the string to json data.
 	//
-
 	let convert_to_json = JSON.parse(new_env);
 
 	//
-	// 5. Assign the values to the proccess.env object
+	//	7. Assign the values to the proccess.env object.
 	//
-
 	process.env = convert_to_json;
 }
 
