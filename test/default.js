@@ -9,12 +9,8 @@ describe('For TravisCI', function() {
 		//	Execute index.js on the sample site, if it builds it means
 		//	this version works.
 		//
-<<<<<<< HEAD
 
 		exec('cd ./test/sample_site && node ../../index.js -s . && rm -rf _output',
-=======
-		exec('cd ./test/sample_site && node ../../index.js -s .',
->>>>>>> fcfbcd5b632425ecf8439497fa56319f16fd729c
 		function(error, stdout, stderr) {
 
 			//
