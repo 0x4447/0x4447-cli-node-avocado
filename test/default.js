@@ -10,7 +10,7 @@ describe('For TravisCI', function() {
 		// this version works.
 		//
 
-		exec('cd ./test/sample_site && node ../../index.js -s .',
+		exec('cd ./test/sample_site && node ../../index.js -s . && rm -rf _output',
 		function(error, stdout, stderr) {
 
 			//
