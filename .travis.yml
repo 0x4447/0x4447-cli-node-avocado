@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - 11
 script:
-- make test
+- npm test
 deploy:
   provider: npm
   email: npm@gatti.email

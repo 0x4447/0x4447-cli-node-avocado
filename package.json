@@ -40,6 +40,7 @@
     "aws"
   ],
   "dependencies": {
+    "chai": "^4.2.0",
     "commander": "2.15.1",
     "fs-readdir-recursive": "^1.1.0",
     "hogan.js": "3.0.2",
