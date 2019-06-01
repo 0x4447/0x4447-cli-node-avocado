@@ -146,35 +146,14 @@ function main()
 	//	->	Start the chain
 	//
 	start(container)
+		.then(clean)
+		.then(data)
+		.then(render)
+		.then(copy)
+		.then(diet)
+		.then(remove)
+		.then(stop)
 		.then(function(container) {
-
-			return clean(container);
-
-		}).then(function(container) {
-
-			return data(container);
-
-		}).then(function(container) {
-
-			return render(container);
-
-		}).then(function(container) {
-
-			return copy(container);
-
-		}).then(function(container) {
-
-			return diet(container);
-
-		}).then(function(container) {
-
-			return remove(container);
-
-		}).then(function(container) {
-
-			return stop(container);
-
-		}).then(function(container) {
 
 			//
 			//	1.	Check if the app should monitor file changes or exit
